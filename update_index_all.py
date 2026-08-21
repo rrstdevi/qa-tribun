@@ -8,11 +8,7 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 directory = os.path.join(script_dir, "output")
 index_path = os.path.join(directory, "index.html")
 
-# Pastikan file index_path ada, jika belum ada buat dari template dasar
-if not os.path.exists(index_path):
-    os.makedirs(directory, exist_ok=True)
-    with open(index_path, 'w', encoding='utf-8') as f:
-        f.write('''<!DOCTYPE html>
+header = '''<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -130,26 +126,8 @@ if not os.path.exists(index_path):
             <h1>QA Automation Dashboard</h1>
             <p class="subtitle">Validation Reports for Tribun Data Product</p>
         </header>
-        <div class="report-grid">
-    </div>
-    </div>
-</body>
-</html>''')
+        <div class="report-grid">\n'''
 
-
-# Read current index.html
-with open(index_path, 'r', encoding='utf-8') as f:
-    content = f.read()
-
-# Find the start and end of the report grid
-start_marker = '<div class="report-grid">'
-
-if start_marker not in content:
-    print("Could not find start marker")
-    exit(1)
-
-parts = content.split(start_marker)
-header = parts[0] + start_marker + "\n\n"
 footer = "\n        </div>\n    </div>\n</body>\n</html>"
 
 html_files = []
