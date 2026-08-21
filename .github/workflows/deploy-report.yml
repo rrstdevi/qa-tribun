@@ -37,16 +37,16 @@ jobs:
           PYTHONPATH: .
         run: |
           # Jalankan test trending tag
-          uv run python header_tag/test_trending_tag_api.py || true
+          python header_tag/test_trending_tag_api.py || true
           
           # Jika Anda ingin menyalakan test latest feed juga, uncomment baris di bawah:
-          # uv run python homepage/qa_main.py || true
+          # python homepage/qa_main.py || true
 
       # ----------------------------------------------------
       # 2. Update File Index HTML Induk
       # ----------------------------------------------------
       - name: Generate Dashboard Index
-        run: uv run python update_index_all.py
+        run: python update_index_all.py
 
       # ----------------------------------------------------
       # 3. Deploy folder "output" langsung ke GitHub Pages
