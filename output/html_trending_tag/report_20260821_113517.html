@@ -1,0 +1,233 @@
+
+    <html>
+    <head>
+        <title>Trending Tag Validation Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            h1 { color: #333; }
+            .summary { background: #f9f9f9; padding: 15px; border: 1px solid #ddd; margin-bottom: 20px; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th, td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 14px; vertical-align: top; }
+            th { background-color: #2c3e50; color: white; }
+            .passed { color: #28a745; font-weight: bold; }
+            .failed { color: #dc3545; font-weight: bold; }
+            .detail-cell { font-family: monospace; white-space: pre-wrap; font-size: 13px; }
+        </style>
+    </head>
+    <body>
+        <h1>Trending Tag Validation Report</h1>
+        <div class="summary">
+            <h2>Summary Metrics</h2>
+            <p><strong>Endpoint:</strong> /trending_tag</p>
+    
+            <hr>
+            <p><strong>Total Scenarios:</strong> 27</p>
+            <ul>
+                <li class="passed">PASS: 26</li>
+                <li class="failed">FAIL: 1</li>
+            </ul>
+        </div>
+        
+        <h2>Validation Details</h2>
+        <table>
+            <tr>
+                <th>Test Case ID & Description</th>
+                <th>Status</th>
+                <th>Duration (s)</th>
+                <th>Details</th>
+            </tr>
+    
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_001: Validasi request dengan X-API-Key yang valid</td>
+                <td class="passed">PASSED</td>
+                <td>0.188</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_002: Validasi request tanpa header X-API-Key</td>
+                <td class="passed">PASSED</td>
+                <td>0.084</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_003: Validasi request dengan X-API-Key salah/kadaluarsa</td>
+                <td class="passed">PASSED</td>
+                <td>0.083</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_004: Validasi request tanpa parameter client_id</td>
+                <td class="passed">PASSED</td>
+                <td>0.143</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_005: Validasi request dengan client_id valid dan unik</td>
+                <td class="passed">PASSED</td>
+                <td>0.095</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_006: Validasi page_mode=popular menghasilkan data trending tag</td>
+                <td class="passed">PASSED</td>
+                <td>0.148</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_007: Validasi page_mode selain 'popular'</td>
+                <td class="passed">PASSED</td>
+                <td>0.089</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_008: Validasi page_mode dengan huruf besar/kombinasi</td>
+                <td class="passed">PASSED</td>
+                <td>0.144</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_009: Validasi request tanpa parameter page_mode</td>
+                <td class="passed">PASSED</td>
+                <td>0.166</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_010: Validasi num_recommendation tidak dikirim menggunakan default</td>
+                <td class="passed">PASSED</td>
+                <td>0.132</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_011: Validasi num_recommendation custom (kurang dari default)</td>
+                <td class="passed">PASSED</td>
+                <td>0.142</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_012: Validasi num_recommendation pada nilai maksimal (boundary)</td>
+                <td class="passed">PASSED</td>
+                <td>0.081</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_013: Validasi num_recommendation melebihi batas maksimal</td>
+                <td class="passed">PASSED</td>
+                <td>0.083</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_014: Validasi num_recommendation = 0 tetap mengembalikan default tag</td>
+                <td class="passed">PASSED</td>
+                <td>0.088</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_015: Validasi num_recommendation bernilai negatif</td>
+                <td class="passed">PASSED</td>
+                <td>0.102</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_016: Validasi request dari Mobile App tidak mengirim source_url</td>
+                <td class="passed">PASSED</td>
+                <td>0.139</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_017: Validasi request yang tetap mengirim source_url tetap HTTP 200</td>
+                <td class="passed">PASSED</td>
+                <td>0.128</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_018: Validasi similarity_score dengan nilai custom lebih tinggi (lebih ketat)</td>
+                <td class="passed">PASSED</td>
+                <td>0.141</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_API_019: Validasi similarity_score dengan nilai custom lebih rendah (lebih longgar)</td>
+                <td class="passed">PASSED</td>
+                <td>0.095</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_RESP_001: Validasi struktur response sesuai kontrak API</td>
+                <td class="passed">PASSED</td>
+                <td>0.142</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_RESP_002: Validasi setiap tag_url mengarah ke halaman tag yang valid</td>
+                <td class="passed">PASSED</td>
+                <td>0.726</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_RESP_003: Validasi sistem mengambil data dari Redis saat database utama gagal</td>
+                <td class="passed">PASSED</td>
+                <td>0.150</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_FILTER_002: Validasi tag yang termasuk daftar dilarang (blacklist) tidak muncul.</td>
+                <td class="passed">PASSED</td>
+                <td>0.155</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_RESP_005: Validasi response time API trending tag berada dalam batas SLA (400ms)</td>
+                <td class="passed">PASSED</td>
+                <td>0.089</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_THUMB_001: Validasi setiap trending tag memiliki foto_url/foto yang valid</td>
+                <td class="passed">PASSED</td>
+                <td>0.157</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #ffffff;">
+                <td style="font-weight: bold; color: #333;">TC_THUMB_002: Validasi tidak ada foto_url yang kosong/null pada hasil trending tag</td>
+                <td class="passed">PASSED</td>
+                <td>0.141</td>
+                <td class="detail-cell"><span style="color: #28a745;">All matrices matched the expectations.</span></td>
+            </tr>
+        
+            <tr style="background-color: #fff3f3;">
+                <td style="font-weight: bold; color: #333;">TC_THUMB_003: Validasi tidak ada foto_url yang duplikat dalam satu response</td>
+                <td class="failed">FAILED</td>
+                <td>0.454</td>
+                <td class="detail-cell"><details open><summary style="cursor: pointer; font-weight: bold; color: #dc3545;">View Error</summary><pre style="background: #282c34; color: #e06c75; padding: 10px; border-radius: 5px; margin-top: 8px;">AssertionError: Failed: Matriks gagal: Ditemukan duplikasi foto: [&#x27;https://asset-2.tribunnews.com/tribunnews/foto/bank/images/dr-Tifa-putusan-sela.jpg&#x27;]
+assert not [&#x27;https://asset-2.tribunnews.com/tribunnews/foto/bank/images/dr-Tifa-putusan-sela.jpg&#x27;]</pre></details></td>
+            </tr>
+        
+        </table>
+    </body>
+    </html>
+    

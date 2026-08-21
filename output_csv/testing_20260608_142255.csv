@@ -1,0 +1,757 @@
+Endpoint;Scenario;IP Address;Client ID;Mode;Status Code;Latency (Seconds);Model Code;Articles Returned;Returned Article IDs (Debug);Full Response / Error
+/article;SCN-001: Berita Shopping;140.213.138.238;test-020;Localized;404;0.508337;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-001: Berita Shopping;140.213.138.238;test-020;Global;404;0.406104;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-001: Berita Shopping;182.4.71.244;test-020;Localized;404;0.346171;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-001: Berita Shopping;182.4.71.244;test-020;Global;404;0.351687;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-001: Berita Shopping;103.47.134.83;test-020;Localized;404;0.445067;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-001: Berita Shopping;103.47.134.83;test-020;Global;404;0.35061;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-001: Berita Shopping;182.0.140.19;test-020;Localized;404;0.345482;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-001: Berita Shopping;182.0.140.19;test-020;Global;404;0.344515;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-001: Berita Shopping;202.65.225.197;test-020;Localized;404;0.366592;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-001: Berita Shopping;202.65.225.197;test-020;Global;404;0.372226;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-001: Berita Shopping;182.9.33.233;test-020;Localized;404;0.353341;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-001: Berita Shopping;182.9.33.233;test-020;Global;404;0.348874;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-001: Berita Shopping;114.10.137.227;test-020;Localized;404;0.369198;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-001: Berita Shopping;114.10.137.227;test-020;Global;404;0.381147;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-001: Berita Shopping;125.162.210.195;test-020;Localized;404;0.384244;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-001: Berita Shopping;125.162.210.195;test-020;Global;404;0.385038;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-001: Berita Shopping;140.213.186.8;test-020;Localized;404;0.368208;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-001: Berita Shopping;140.213.186.8;test-020;Global;404;0.358951;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-002: Berita Nasional Ibukota;140.213.138.238;test-020;Localized;404;0.34977;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-002: Berita Nasional Ibukota;140.213.138.238;test-020;Global;404;0.363252;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-002: Berita Nasional Ibukota;182.4.71.244;test-020;Localized;404;0.344661;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-002: Berita Nasional Ibukota;182.4.71.244;test-020;Global;404;0.369889;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-002: Berita Nasional Ibukota;103.47.134.83;test-020;Localized;404;0.368194;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-002: Berita Nasional Ibukota;103.47.134.83;test-020;Global;404;0.392338;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-002: Berita Nasional Ibukota;182.0.140.19;test-020;Localized;404;0.386108;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-002: Berita Nasional Ibukota;182.0.140.19;test-020;Global;404;0.349187;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-002: Berita Nasional Ibukota;202.65.225.197;test-020;Localized;404;0.35007;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-002: Berita Nasional Ibukota;202.65.225.197;test-020;Global;404;0.345391;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-002: Berita Nasional Ibukota;182.9.33.233;test-020;Localized;404;0.33821;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-002: Berita Nasional Ibukota;182.9.33.233;test-020;Global;404;0.357487;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-002: Berita Nasional Ibukota;114.10.137.227;test-020;Localized;404;0.342747;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-002: Berita Nasional Ibukota;114.10.137.227;test-020;Global;404;0.364132;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-002: Berita Nasional Ibukota;125.162.210.195;test-020;Localized;404;0.363557;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-002: Berita Nasional Ibukota;125.162.210.195;test-020;Global;404;0.368252;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-002: Berita Nasional Ibukota;140.213.186.8;test-020;Localized;404;0.352443;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/article;SCN-002: Berita Nasional Ibukota;140.213.186.8;test-020;Global;404;0.342295;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/homepage;Homepage Default;140.213.138.238;test-020;Localized;404;0.349706;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/homepage;Homepage Default;140.213.138.238;test-020;Global;404;0.392887;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/homepage;Homepage Default;182.4.71.244;test-020;Localized;404;0.370896;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/homepage;Homepage Default;182.4.71.244;test-020;Global;404;0.368291;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/homepage;Homepage Default;103.47.134.83;test-020;Localized;404;0.358933;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/homepage;Homepage Default;103.47.134.83;test-020;Global;404;0.373243;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/homepage;Homepage Default;182.0.140.19;test-020;Localized;404;0.353017;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/homepage;Homepage Default;182.0.140.19;test-020;Global;404;0.332235;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/homepage;Homepage Default;202.65.225.197;test-020;Localized;404;0.347799;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/homepage;Homepage Default;202.65.225.197;test-020;Global;404;0.355076;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/homepage;Homepage Default;182.9.33.233;test-020;Localized;404;0.342973;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/homepage;Homepage Default;182.9.33.233;test-020;Global;404;0.351147;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/homepage;Homepage Default;114.10.137.227;test-020;Localized;404;0.350209;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/homepage;Homepage Default;114.10.137.227;test-020;Global;404;0.344679;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/homepage;Homepage Default;125.162.210.195;test-020;Localized;404;0.392555;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/homepage;Homepage Default;125.162.210.195;test-020;Global;404;0.3632;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/homepage;Homepage Default;140.213.186.8;test-020;Localized;404;0.357846;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"
+/homepage;Homepage Default;140.213.186.8;test-020;Global;404;0.353904;N/A;0;N/A;"<!DOCTYPE HTML>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+"

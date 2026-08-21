@@ -1,0 +1,2542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Automation Dashboard - Recommendation Engine</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Documentation Report Automation Testing TribunX Recommendation Engine">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #3b82f6;
+            --accent-hover: #60a5fa;
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            /* Premium gradient mesh background */
+            background-image:
+                radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+                radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 0.5) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.3) 0, transparent 50%);
+            background-attachment: fixed;
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            letter-spacing: -1.5px;
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            animation-delay: 0.2s;
+        }
+
+        .report-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Glassmorphism shine effect */
+        .report-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.03), transparent);
+            transform: skewX(-20deg);
+            transition: all 0.6s ease;
+        }
+
+        .report-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .report-card:hover::before {
+            left: 150%;
+        }
+
+        .report-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .report-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .report-date {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .view-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .view-btn:hover {
+            background: var(--accent-color);
+            color: white;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            border-color: var(--accent-color);
+            transform: scale(1.02);
+        }
+
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            letter-spacing: 0.5px;
+        }
+
+        .badge.latest {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            border-color: rgba(245, 158, 11, 0.2);
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .report-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>QA Documentation Hub</h1>
+            <p class="subtitle">Documentation Report Automation Testing TribunX Recommendation Engine</p>
+        </header>
+
+        <div class="report-grid">
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge latest">LATEST RUN</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 16:39:20
+                    </div>
+                </div>
+                <a href="report_2026-06-23_16-39-20_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 16:39:20
+                    </div>
+                </div>
+                <a href="report_2026-06-23_16-39-20_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 16:28:31
+                    </div>
+                </div>
+                <a href="report_2026-06-23_16-28-31_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 16:28:31
+                    </div>
+                </div>
+                <a href="report_2026-06-23_16-28-31_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 16:23:19
+                    </div>
+                </div>
+                <a href="validation_report_20260623_162319.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 16:22:13
+                    </div>
+                </div>
+                <a href="validation_report_20260623_162213.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 16:21:09
+                    </div>
+                </div>
+                <a href="validation_report_20260623_162109.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 16:17:43
+                    </div>
+                </div>
+                <a href="validation_report_20260623_161743.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 16:16:26
+                    </div>
+                </div>
+                <a href="validation_report_20260623_161626.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 16:14:07
+                    </div>
+                </div>
+                <a href="validation_report_20260623_161407.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 16:12:37
+                    </div>
+                </div>
+                <a href="validation_report_20260623_161237.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 16:11:23
+                    </div>
+                </div>
+                <a href="validation_report_20260623_161123.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 16:05:27
+                    </div>
+                </div>
+                <a href="report_2026-06-23_16-05-27_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 16:05:27
+                    </div>
+                </div>
+                <a href="report_2026-06-23_16-05-27_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 16:02:47
+                    </div>
+                </div>
+                <a href="report_2026-06-23_16-02-47_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 16:02:47
+                    </div>
+                </div>
+                <a href="report_2026-06-23_16-02-47_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:57:48
+                    </div>
+                </div>
+                <a href="report_2026-06-23_15-57-48_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:57:48
+                    </div>
+                </div>
+                <a href="report_2026-06-23_15-57-48_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:55:54
+                    </div>
+                </div>
+                <a href="report_2026-06-23_15-55-54_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:55:54
+                    </div>
+                </div>
+                <a href="report_2026-06-23_15-55-54_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:53:07
+                    </div>
+                </div>
+                <a href="report_2026-06-23_15-53-07_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:53:07
+                    </div>
+                </div>
+                <a href="report_2026-06-23_15-53-07_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:49:04
+                    </div>
+                </div>
+                <a href="report_2026-06-23_15-49-04_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:49:04
+                    </div>
+                </div>
+                <a href="report_2026-06-23_15-49-04_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:45:35
+                    </div>
+                </div>
+                <a href="report_2026-06-23_15-45-35_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:45:35
+                    </div>
+                </div>
+                <a href="report_2026-06-23_15-45-35_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:39:18
+                    </div>
+                </div>
+                <a href="report_2026-06-23_15-39-18_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:39:18
+                    </div>
+                </div>
+                <a href="report_2026-06-23_15-39-18_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:31:29
+                    </div>
+                </div>
+                <a href="report_2026-06-23_15-31-29_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:31:29
+                    </div>
+                </div>
+                <a href="report_2026-06-23_15-31-29_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:23:12
+                    </div>
+                </div>
+                <a href="report_2026-06-23_15-23-12_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:23:12
+                    </div>
+                </div>
+                <a href="report_2026-06-23_15-23-12_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:13:20
+                    </div>
+                </div>
+                <a href="report_2026-06-23_15-13-20_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:13:20
+                    </div>
+                </div>
+                <a href="report_2026-06-23_15-13-20_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:09:18
+                    </div>
+                </div>
+                <a href="validation_report_20260623_150918.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 15:01:41
+                    </div>
+                </div>
+                <a href="validation_report_20260623_150141.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 14:58:11
+                    </div>
+                </div>
+                <a href="validation_report_20260623_145811.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 14:55:02
+                    </div>
+                </div>
+                <a href="validation_report_20260623_145502.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 14:46:58
+                    </div>
+                </div>
+                <a href="validation_report_20260623_144658.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 14:40:53
+                    </div>
+                </div>
+                <a href="validation_report_20260623_144053.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 23, 2026 &bull; 14:10:41
+                    </div>
+                </div>
+                <a href="validation_report_20260623_141041.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 22, 2026 &bull; 16:51:51
+                    </div>
+                </div>
+                <a href="report_2026-06-22_16-51-51_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 22, 2026 &bull; 16:51:51
+                    </div>
+                </div>
+                <a href="report_2026-06-22_16-51-51_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 22, 2026 &bull; 16:40:36
+                    </div>
+                </div>
+                <a href="validation_report_20260622_164036.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 22, 2026 &bull; 16:32:16
+                    </div>
+                </div>
+                <a href="validation_report_20260622_163216.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 22, 2026 &bull; 16:29:12
+                    </div>
+                </div>
+                <a href="validation_report_20260622_162912.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 18, 2026 &bull; 15:27:40
+                    </div>
+                </div>
+                <a href="validation_report_20260618_152740.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 18, 2026 &bull; 15:24:20
+                    </div>
+                </div>
+                <a href="validation_report_20260618_152420.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 18, 2026 &bull; 15:23:36
+                    </div>
+                </div>
+                <a href="validation_report_20260618_152336.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 18, 2026 &bull; 15:22:44
+                    </div>
+                </div>
+                <a href="validation_report_20260618_152244.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 18, 2026 &bull; 15:21:34
+                    </div>
+                </div>
+                <a href="validation_report_20260618_152134.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 18, 2026 &bull; 14:39:01
+                    </div>
+                </div>
+                <a href="validation_report_20260618_143901.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 18, 2026 &bull; 14:36:37
+                    </div>
+                </div>
+                <a href="validation_report_20260618_143637.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 18, 2026 &bull; 14:35:24
+                    </div>
+                </div>
+                <a href="validation_report_20260618_143524.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 18, 2026 &bull; 14:31:07
+                    </div>
+                </div>
+                <a href="report_2026-06-18_14-31-07_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 18, 2026 &bull; 14:31:07
+                    </div>
+                </div>
+                <a href="report_2026-06-18_14-31-07_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 18, 2026 &bull; 11:20:37
+                    </div>
+                </div>
+                <a href="report_2026-06-18_11-20-37_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 18, 2026 &bull; 11:20:37
+                    </div>
+                </div>
+                <a href="report_2026-06-18_11-20-37_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 18, 2026 &bull; 11:06:27
+                    </div>
+                </div>
+                <a href="report_2026-06-18_11-06-27_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 18, 2026 &bull; 11:06:27
+                    </div>
+                </div>
+                <a href="report_2026-06-18_11-06-27_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 18, 2026 &bull; 11:01:35
+                    </div>
+                </div>
+                <a href="validation_report_20260618_110135.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 18, 2026 &bull; 10:14:11
+                    </div>
+                </div>
+                <a href="validation_report_20260618_101411.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 17, 2026 &bull; 15:45:51
+                    </div>
+                </div>
+                <a href="validation_report_20260617_154551.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 17, 2026 &bull; 15:14:01
+                    </div>
+                </div>
+                <a href="report_2026-06-17_15-14-01_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 17, 2026 &bull; 15:14:01
+                    </div>
+                </div>
+                <a href="report_2026-06-17_15-14-01_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 17, 2026 &bull; 15:08:55
+                    </div>
+                </div>
+                <a href="validation_report_20260617_150855.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 17, 2026 &bull; 15:03:47
+                    </div>
+                </div>
+                <a href="validation_report_20260617_150347.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 17, 2026 &bull; 14:37:15
+                    </div>
+                </div>
+                <a href="report_2026-06-17_14-37-15_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 17, 2026 &bull; 14:37:15
+                    </div>
+                </div>
+                <a href="report_2026-06-17_14-37-15_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 17, 2026 &bull; 14:29:50
+                    </div>
+                </div>
+                <a href="validation_report_20260617_142950.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 17, 2026 &bull; 11:20:06
+                    </div>
+                </div>
+                <a href="report_2026-06-17_11-20-06_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 17, 2026 &bull; 11:20:06
+                    </div>
+                </div>
+                <a href="report_2026-06-17_11-20-06_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 17, 2026 &bull; 10:51:32
+                    </div>
+                </div>
+                <a href="validation_report_20260617_105132.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 16:19:55
+                    </div>
+                </div>
+                <a href="validation_report_20260615_161955.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 16:18:50
+                    </div>
+                </div>
+                <a href="validation_report_20260615_161850.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 16:15:47
+                    </div>
+                </div>
+                <a href="validation_report_20260615_161547.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 16:11:10
+                    </div>
+                </div>
+                <a href="validation_report_20260615_161110.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 16:05:32
+                    </div>
+                </div>
+                <a href="validation_report_20260615_160532.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 16:01:34
+                    </div>
+                </div>
+                <a href="validation_report_20260615_160134.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 15:57:26
+                    </div>
+                </div>
+                <a href="validation_report_20260615_155726.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 15:56:18
+                    </div>
+                </div>
+                <a href="validation_report_20260615_155618.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 15:03:24
+                    </div>
+                </div>
+                <a href="validation_report_20260615_150324.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 14:47:09
+                    </div>
+                </div>
+                <a href="validation_report_20260615_144709.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 14:30:24
+                    </div>
+                </div>
+                <a href="validation_report_20260615_143024.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 14:25:49
+                    </div>
+                </div>
+                <a href="validation_report_20260615_142549.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 14:23:44
+                    </div>
+                </div>
+                <a href="validation_report_20260615_142344.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 14:18:04
+                    </div>
+                </div>
+                <a href="validation_report_20260615_141804.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 13:56:47
+                    </div>
+                </div>
+                <a href="validation_report_20260615_135647.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 13:33:58
+                    </div>
+                </div>
+                <a href="validation_report_20260615_133358.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 12:00:09
+                    </div>
+                </div>
+                <a href="validation_report_20260615_120009.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 11:57:22
+                    </div>
+                </div>
+                <a href="validation_report_20260615_115722.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 11:51:37
+                    </div>
+                </div>
+                <a href="validation_report_20260615_115137.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 15, 2026 &bull; 11:50:15
+                    </div>
+                </div>
+                <a href="validation_report_20260615_115015.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 12, 2026 &bull; 16:02:12
+                    </div>
+                </div>
+                <a href="reports_2026-06-12_16-02-12/report_2026-06-12_16-02-12_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 12, 2026 &bull; 16:02:12
+                    </div>
+                </div>
+                <a href="reports_2026-06-12_16-02-12/report_2026-06-12_16-02-12_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 12, 2026 &bull; 15:58:35
+                    </div>
+                </div>
+                <a href="reports_2026-06-12_15-58-35/report_2026-06-12_15-58-35_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 12, 2026 &bull; 15:58:35
+                    </div>
+                </div>
+                <a href="reports_2026-06-12_15-58-35/report_2026-06-12_15-58-35_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 3)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 12, 2026 &bull; 15:58:35
+                    </div>
+                </div>
+                <a href="reports_2026-06-12_15-58-35/report_2026-06-12_15-58-35_batch_3.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 4)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 12, 2026 &bull; 15:58:35
+                    </div>
+                </div>
+                <a href="reports_2026-06-12_15-58-35/report_2026-06-12_15-58-35_batch_4.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 12, 2026 &bull; 15:51:35
+                    </div>
+                </div>
+                <a href="reports_2026-06-12_15-51-35/report_2026-06-12_15-51-35_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 12, 2026 &bull; 15:51:35
+                    </div>
+                </div>
+                <a href="reports_2026-06-12_15-51-35/report_2026-06-12_15-51-35_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 12, 2026 &bull; 15:42:39
+                    </div>
+                </div>
+                <a href="reports_2026-06-12_15-42-39/report_2026-06-12_15-42-39_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 12, 2026 &bull; 15:42:39
+                    </div>
+                </div>
+                <a href="reports_2026-06-12_15-42-39/report_2026-06-12_15-42-39_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 12, 2026 &bull; 15:17:46
+                    </div>
+                </div>
+                <a href="reports_2026-06-12_15-17-46/report_2026-06-12_15-17-46_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 12, 2026 &bull; 15:17:46
+                    </div>
+                </div>
+                <a href="reports_2026-06-12_15-17-46/report_2026-06-12_15-17-46_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 12, 2026 &bull; 14:52:54
+                    </div>
+                </div>
+                <a href="reports_2026-06-12_14-52-54/report_2026-06-12_14-52-54_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 12, 2026 &bull; 14:52:54
+                    </div>
+                </div>
+                <a href="reports_2026-06-12_14-52-54/report_2026-06-12_14-52-54_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 1)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 12, 2026 &bull; 14:36:54
+                    </div>
+                </div>
+                <a href="reports_2026-06-12_14-36-54/report_2026-06-12_14-36-54_batch_1.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report (Batch 2)</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 12, 2026 &bull; 14:36:54
+                    </div>
+                </div>
+                <a href="reports_2026-06-12_14-36-54/report_2026-06-12_14-36-54_batch_2.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 12, 2026 &bull; 13:16:23
+                    </div>
+                </div>
+                <a href="validation_report_20260612_131623.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 09, 2026 &bull; 15:15:18
+                    </div>
+                </div>
+                <a href="validation_report_20260609_151518.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 09, 2026 &bull; 14:53:33
+                    </div>
+                </div>
+                <a href="validation_report_20260609_145333.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 09, 2026 &bull; 11:27:56
+                    </div>
+                </div>
+                <a href="validation_report_20260609_112756.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 09, 2026 &bull; 10:01:02
+                    </div>
+                </div>
+                <a href="validation_report_20260609_100102.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 09, 2026 &bull; 09:54:46
+                    </div>
+                </div>
+                <a href="validation_report_20260609_095446.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 09, 2026 &bull; 00:52:26
+                    </div>
+                </div>
+                <a href="validation_report_20260609_005226.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 09, 2026 &bull; 00:28:58
+                    </div>
+                </div>
+                <a href="validation_report_20260609_002858.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 08, 2026 &bull; 21:19:38
+                    </div>
+                </div>
+                <a href="validation_report_20260608_211938.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 08, 2026 &bull; 21:04:01
+                    </div>
+                </div>
+                <a href="validation_report_20260608_210401.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 08, 2026 &bull; 20:50:57
+                    </div>
+                </div>
+                <a href="validation_report_20260608_205057.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 08, 2026 &bull; 14:44:46
+                    </div>
+                </div>
+                <a href="validation_report_20260608_144446.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        June 08, 2026 &bull; 13:52:26
+                    </div>
+                </div>
+                <a href="validation_report_20260608_135226.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        May 18, 2026 &bull; 14:00:13
+                    </div>
+                </div>
+                <a href="validation_report_20260518_140013.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        May 13, 2026 &bull; 16:38:26
+                    </div>
+                </div>
+                <a href="validation_report_20260513_163826.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        May 13, 2026 &bull; 16:35:26
+                    </div>
+                </div>
+                <a href="validation_report_20260513_163526.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        May 13, 2026 &bull; 15:12:32
+                    </div>
+                </div>
+                <a href="validation_report_20260513_151232.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        May 13, 2026 &bull; 10:08:15
+                    </div>
+                </div>
+                <a href="validation_report_20260513_100815.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Validation Report</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        May 12, 2026 &bull; 11:52:36
+                    </div>
+                </div>
+                <a href="validation_report_20260512_115236.html" class="view-btn">View Detailed Report</a>
+            </div>
+    </div>
+</body>
+</html>

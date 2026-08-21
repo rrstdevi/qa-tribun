@@ -1,0 +1,10 @@
+Client ID,IP,City,Mode,Status,Internal Dups,Cross Dup IDs,Cross Dup Titles,Cross Dup Fotos
+test-9118,140.213.138.238,Kudus,Localized,PASS,None,None,None,None
+test-9118,182.4.71.244,Padang,Localized,PASS,None,None,None,None
+test-9118,103.47.134.83,Jakarta,Localized,PASS,None,None,None,None
+test-9118,182.0.140.19,Jakarta,Localized,PASS,None,None,None,None
+test-9118,202.65.225.197,Jakarta,Localized,FAIL,None,tribunnews_7871126,motor listrik nasional jadi opsi kurangi konsumsi bbm di tengah penataan pertalite,https://asset-2.tribunnews.com/tribunnews/foto/bank/images/Motor-listrik-Honda-di-IIMS-2026.jpg
+test-9118,182.9.33.233,Medan,Localized,PASS,None,None,None,None
+test-9118,114.10.137.227,Pontianak,Localized,PASS,None,None,None,None
+test-9118,125.162.210.195,Unknown,Localized,PASS,None,None,None,None
+test-9118,140.213.186.8,Unknown,Localized,PASS,None,None,None,None

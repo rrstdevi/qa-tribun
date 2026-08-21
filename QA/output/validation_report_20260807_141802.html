@@ -1,0 +1,1064 @@
+
+        <html>
+        <head>
+            <title>TribunX Recommendation Validation Report</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                h1 { color: #333; }
+                .summary { background: #f9f9f9; padding: 15px; border: 1px solid #ddd; margin-bottom: 20px; }
+                table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; font-size: 14px; vertical-align: top; }
+                th { background-color: #f2f2f2; }
+                .PASS { color: green; font-weight: bold; }
+                .FAIL { color: red; font-weight: bold; }
+                .WARNING { color: orange; font-weight: bold; }
+                .ERROR { color: darkred; font-weight: bold; }
+                .COLD_START_USER { color: #1E3A8A; font-weight: bold; background-color: #DBEAFE; padding: 2px 4px; border-radius: 4px; }
+                .detail-cell { font-family: monospace; white-space: pre-wrap; }
+            </style>
+        </head>
+        <body>
+            <h1>TribunX Recommendation Validation Report</h1>
+            <div class="summary">
+                <h2>Summary Metrics</h2>
+                <p><strong>Config Used:</strong> MMR Lambda=0.7, Similarity Threshold=60.0</p>
+                <p><strong>Total Requests Analyzed:</strong> 6</p>
+                <hr>
+                <p><strong>Total Validation Rules Checked:</strong> 58</p>
+                <ul>
+                    <li class="PASS">PASS: 51</li>
+                    <li class="FAIL">FAIL: 7</li>
+                    <li class="WARNING">WARNING: 0</li>
+                    <li class="ERROR">ERROR: 0</li>
+                    <li class="COLD_START_USER">COLD START USER: 0</li>
+                </ul>
+                <hr>
+                <p><strong>Avg Latency:</strong> 368 ms</p>
+                <p><strong>Max Latency:</strong> 858 ms</p>
+                <p><strong>Avg Execution Time:</strong> 175 ms</p>
+                <p><strong>Max Execution Time:</strong> 510 ms</p>
+                <p><strong>Avg Delta:</strong> 235 ms</p>
+                <p><strong>Max Delta:</strong> 347 ms</p>
+            </div>
+            
+            
+            <h2>Homepage Observability Summary</h2>
+            <table>
+                <tr>
+                    <th>Client ID</th>
+                    <th>IP Address</th>
+                    <th>Mode</th>
+                    <th>Latency (ms)</th>
+                    <th>Execution Time (ms)</th>
+                    <th>Delta (ms)</th>
+                </tr>
+            <tr style="background-color: #2c3e50; color: white;"><td colspan="6" style="padding: 12px;"><b>Client ID: test-9119</b></td></tr><tr style="background-color: #dcdde1;"><td colspan="6"><b>📍 IP Address: 182.4.71.244</b></td></tr>
+                <tr>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>Global</td>
+                    <td>177</td>
+                    <td>7</td>
+                    <td>170</td>
+                </tr>
+                
+                <tr>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>Localized</td>
+                    <td>196</td>
+                    <td>7</td>
+                    <td>189</td>
+                </tr>
+                
+                <tr>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>Mix</td>
+                    <td>858</td>
+                    <td>510</td>
+                    <td>347</td>
+                </tr>
+                </table><br><hr>
+            
+            <h2>Validation Details</h2>
+            <table>
+                <tr>
+                    <th>Row</th>
+                    <th>Scenario</th>
+                    <th>Client ID</th>
+                    <th>IP Address</th>
+                    <th>Endpoint</th>
+                    <th>Mode</th>
+                    <th>Validation Area</th>
+                    <th>Status</th>
+                    <th>Detail</th>
+                </tr>
+        <tr style="background-color: #2c3e50; color: white;"><td colspan="9" style="padding: 12px;"><b>Client ID: test-9119</b></td></tr><tr style="background-color: #dcdde1;"><td colspan="9"><b>📍 IP Address: 182.4.71.244</b></td></tr>
+                <tr style="background-color: #ffffff;">
+                    <td>2</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Localized</td>
+                    <td>Latency Validation</td>
+                    <td class="FAIL">FAIL</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Latency 476ms exceeds threshold of 300ms</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>2</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Localized</td>
+                    <td>Recency Validation</td>
+                    <td class="FAIL">FAIL</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">FAIL: Recency validation failed or encountered errors
+
+Top News Articles:
+- ID: 1037657 | Age: 1.2 hours | Max: 6 hours | PASS
+
+Personalized/Similarity Articles:
+- ID: 1111335 | Age: 4.6 hours | Max: 6 hours | PASS
+- ID: 1037617 | Age: 5.7 hours | Max: 6 hours | PASS
+- ID: 956834 | Age: 22.8 hours | Max: 6 hours | FAIL
+- ID: 897479 | Age: 39.9 hours | Max: 6 hours | FAIL
+- ID: 176910 | Age: 43.9 hours | Max: 6 hours | FAIL
+- ID: 7864210 | Age: 46.9 hours | Max: 6 hours | FAIL
+- ID: 1215215 | Age: 66.6 hours | Max: 6 hours | FAIL</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>2</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Localized</td>
+                    <td>Article Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Total articles is 8</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>2</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Localized</td>
+                    <td>Article Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">PASS: Composition is correct (7 similarity, 1 top-news)
+
+Similarity Articles:
+- ID: 1111335 | Title: &quot;Prakriaan Cuaca Riau Didominasi Cerah Berawan, Hujan Berpotensi Malam Hari di Beberapa Wilayah&quot; | Pekanbaru/Riau/Sumatra
+- ID: 1037617 | Title: &quot;Awas Petir Landa Sejumlah Wilayah Aceh Singkil, Gelombang Laut Capai 2,7 Meter&quot; | Aceh Singkil/Aceh/Sumatra
+- ID: 956834 | Title: &quot;LIVE UPDATE SORE: Update Banjir Padang, Tersangka Mutilasi Depok Ternyata Penyuka Sesama Jenis&quot; | Padang/Sumatera Barat/Sumatra
+- ID: 897479 | Title: &quot;Kemensos Kirim Bantuan Logistik Korban Banjir dan Longsor di Kota Padang&quot; | Padang/Sumatera Barat/Sumatera
+- ID: 176910 | Title: &quot;Kemarau Melanda Indonesia, BPBD Sumbar Ungkap Alasan Banjir di Padang Bisa Terjadi&quot; | Padang/Sumatera Barat/Sumatra
+- ID: 7864210 | Title: &quot;Mendagri Ungkap Tantangan Terberat Rehabilitasi Sumatra: Normalisasi Sungai Butuh Waktu 3 Tahun&quot; | Padang/Sumatra Barat/Sumatra
+- ID: 1215215 | Title: &quot;Detik-detik Kecelakaan Maut di Pasaman, Truk Tronton Nyebur Jurang, Videonya Viral&quot; | Pasaman/Sumatera Barat/Sumatera
+
+Top News Articles:
+- ID: 1037657 | Title: &quot;Wirausaha Unggulan Bank Indonesia: Merajut Mimpi UMKM Aceh Naik Kelas&quot; | Banda Aceh/Aceh/Sumatra
+</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>2</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Localized</td>
+                    <td>Article Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No duplicate articles found</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>2</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Localized</td>
+                    <td>Localization Validation</td>
+                    <td class="FAIL">FAIL</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Localization Validation:
+Anchor Fallback Ranking:
+Main Anchor: Region (&gt;50%)
+1. Region = sumatera (100.0%)
+
+Dataset Validation:
+- Checking Region:
+  Anchor: sumatera | Dataset: NULL
+  Status: SKIPPED (Dataset field empty, falling back...)
+
+Result: FAIL (All available levels mismatched or missing in dataset)
+
+Mismatch Articles: None
+</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>2</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Localized</td>
+                    <td>Duplicate Image URL Position Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No adjacent duplicate images found.</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>2</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Localized</td>
+                    <td>Section Title Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Seluruh artikel memiliki section_title yang valid</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>2</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Localized</td>
+                    <td>Sorting Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">PASS: Articles are sorted from newest to oldest</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>2</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Localized</td>
+                    <td>Local vs Global Duplicate Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No duplicate articles found between Localized and Global mode.
+</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>3</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Global</td>
+                    <td>Latency Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Latency 176ms is &lt;= 200ms</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>3</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Global</td>
+                    <td>Recency Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">PASS: Recency validation is valid
+
+Top News Articles:
+- ID: 440178 | Age: 2.7 hours | Max: 6 hours | PASS
+
+Personalized/Similarity Articles:
+- ID: 974722 | Age: 1.4 hours | Max: 6 hours | PASS
+- ID: 1160295 | Age: 2.0 hours | Max: 6 hours | PASS
+- ID: 89071 | Age: 2.4 hours | Max: 6 hours | PASS
+- ID: 7865150 | Age: 2.9 hours | Max: 6 hours | PASS
+- ID: 63605 | Age: 2.9 hours | Max: 6 hours | PASS
+- ID: 109244 | Age: 3.8 hours | Max: 6 hours | PASS
+- ID: 1181736 | Age: 5.8 hours | Max: 6 hours | PASS</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>3</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Global</td>
+                    <td>Article Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Total articles is 8</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>3</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Global</td>
+                    <td>Article Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">PASS: Composition is correct (7 similarity, 1 top-news)
+
+Similarity Articles:
+- ID: 974722 | Title: &quot;Cek Kondisi Sinptik Perairan NTT Hari Ini 7 Agustus 2026,Waspadai Lokasi Berpotensi Gelombang Tinggi&quot; | Kupang/Nusa Tenggara Timur/Nusa Tenggara
+- ID: 1160295 | Title: &quot;Bantuan Mulai Berdatangan untuk Korban Longsor Muara Bunyut Kubar&quot; | Kutai Barat/Kalimantan Timur/Kalimantan
+- ID: 89071 | Title: &quot;Rela Hilang Penghasilan Demi Seember Air: Potret Pilu Warga Pangandaran Terjebak Kemarau Ekstrem&quot; | Pangandaran/Jawa Barat/Jawa
+- ID: 7865150 | Title: &quot;BMKG: Medan Jadi Wilayah Terpanas di Indonesia, Suhu Maksimum Mencapai 37,8 Derajat Celsius&quot; | Medan/Sumatera Utara/Sumatera
+- ID: 63605 | Title: &quot;Meski Kemarau Meluas, BMKG Prediksi Hujan Masih Turun di Beberapa Daerah hingga 13 Agustus 2026&quot; | Jakarta/DKI Jakarta/Asia Tenggara
+- ID: 109244 | Title: &quot;Kekeringan Landa 9 Kabupaten/Kota di NTB, 6 Daerah Tetapkan Status Siaga Darurat&quot; | Mataram/Nusa Tenggara Barat/Kepulauan Nusa Tenggara
+- ID: 1181736 | Title: &quot;Berita Foto - TPA Rasau Jaya Terbakar, Kondisi Lahan Kering Perparah Kobaran Api&quot; | Kubu Raya/Kalimantan Barat/Kalimantan
+
+Top News Articles:
+- ID: 440178 | Title: &quot;Beda Nasib Pemain di Piala Presiden: Kiper Persib Jadi Sasaran Kritik Bobotoh, Sosok Ini Disanjung&quot; | Gianyar/Bali/Bali
+</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>3</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Global</td>
+                    <td>Article Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No duplicate articles found</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>3</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Global</td>
+                    <td>Duplicate Image URL Position Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No adjacent duplicate images found.</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>3</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Global</td>
+                    <td>Section Title Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Seluruh artikel memiliki section_title yang valid</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>3</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Global</td>
+                    <td>Sorting Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">PASS: Articles are sorted from newest to oldest</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>3</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Global</td>
+                    <td>Local vs Global Duplicate Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No duplicate articles found between Localized and Global mode.
+</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Mix</td>
+                    <td>Latency Validation</td>
+                    <td class="FAIL">FAIL</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Latency 329ms exceeds threshold of 300ms</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Mix</td>
+                    <td>Recency Validation</td>
+                    <td class="FAIL">FAIL</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">FAIL: Recency validation failed or encountered errors
+
+Top News Articles:
+- ID: 440178 | Age: 2.7 hours | Max: 6 hours | PASS
+
+Personalized/Similarity Articles:
+- ID: 974722 | Age: 1.4 hours | Max: 6 hours | PASS
+- ID: 1160295 | Age: 2.0 hours | Max: 6 hours | PASS
+- ID: 89071 | Age: 2.4 hours | Max: 6 hours | PASS
+- ID: 956834 | Age: 22.8 hours | Max: 6 hours | FAIL
+- ID: 897479 | Age: 39.9 hours | Max: 6 hours | FAIL
+- ID: 176910 | Age: 43.9 hours | Max: 6 hours | FAIL
+- ID: 7864210 | Age: 46.9 hours | Max: 6 hours | FAIL</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Mix</td>
+                    <td>Article Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Total articles is 8</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Mix</td>
+                    <td>Article Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">PASS: Composition check skipped for mix mode. (7 similarity, 1 top-news)
+
+Similarity Articles:
+- ID: 974722 | Title: &quot;Cek Kondisi Sinptik Perairan NTT Hari Ini 7 Agustus 2026,Waspadai Lokasi Berpotensi Gelombang Tinggi&quot; | Kupang/Nusa Tenggara Timur/Nusa Tenggara
+- ID: 1160295 | Title: &quot;Bantuan Mulai Berdatangan untuk Korban Longsor Muara Bunyut Kubar&quot; | Kutai Barat/Kalimantan Timur/Kalimantan
+- ID: 89071 | Title: &quot;Rela Hilang Penghasilan Demi Seember Air: Potret Pilu Warga Pangandaran Terjebak Kemarau Ekstrem&quot; | Pangandaran/Jawa Barat/Jawa
+- ID: 956834 | Title: &quot;LIVE UPDATE SORE: Update Banjir Padang, Tersangka Mutilasi Depok Ternyata Penyuka Sesama Jenis&quot; | Padang/Sumatera Barat/Sumatra
+- ID: 897479 | Title: &quot;Kemensos Kirim Bantuan Logistik Korban Banjir dan Longsor di Kota Padang&quot; | Padang/Sumatera Barat/Sumatera
+- ID: 176910 | Title: &quot;Kemarau Melanda Indonesia, BPBD Sumbar Ungkap Alasan Banjir di Padang Bisa Terjadi&quot; | Padang/Sumatera Barat/Sumatra
+- ID: 7864210 | Title: &quot;Mendagri Ungkap Tantangan Terberat Rehabilitasi Sumatra: Normalisasi Sungai Butuh Waktu 3 Tahun&quot; | Padang/Sumatra Barat/Sumatra
+
+Top News Articles:
+- ID: 440178 | Title: &quot;Beda Nasib Pemain di Piala Presiden: Kiper Persib Jadi Sasaran Kritik Bobotoh, Sosok Ini Disanjung&quot; | Gianyar/Bali/Bali
+</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Mix</td>
+                    <td>Article Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No duplicate articles found</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Mix</td>
+                    <td>Localization Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Localization Validation:
+Anchor Fallback Ranking:
+Main Anchor: City (&gt;50%)
+1. City = padang (100.0%)
+2. Province = sumatera barat (75.0%)
+3. Region = sumatera (100.0%)
+
+Dataset Validation:
+- Checking City:
+  Anchor: padang | Dataset: padang
+  Status: MATCH
+
+Winning Anchor: City (padang)
+Result: PASS
+
+Mismatch Articles: None
+</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Mix</td>
+                    <td>Duplicate Image URL Position Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No adjacent duplicate images found.</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Mix</td>
+                    <td>Section Title Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Seluruh artikel memiliki section_title yang valid</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Mix</td>
+                    <td>Sorting Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">PASS: Articles are sorted from newest to oldest</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>SCN-004: Berita Cuaca</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/article</td>
+                    <td>Mix</td>
+                    <td>Local vs Global Duplicate Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No duplicate articles found between Local and Global within Mix mode.
+</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Latency Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Latency 196ms is &lt;= 200ms</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Recency Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">PASS: Recency validation is valid
+
+Top News Articles:
+- ID: 176941 | Age: 0 days | Max: 3 days | PASS
+- ID: 176949 | Age: 0 days | Max: 3 days | PASS
+- ID: 176937 | Age: 0 days | Max: 3 days | PASS
+- ID: 176940 | Age: 0 days | Max: 3 days | PASS
+- ID: 176956 | Age: 0 days | Max: 3 days | PASS
+- ID: 7864973 | Age: 0 days | Max: 3 days | PASS
+- ID: 176952 | Age: 0 days | Max: 3 days | PASS
+- ID: 176961 | Age: 0 days | Max: 3 days | PASS
+- ID: 1037516 | Age: 0 days | Max: 3 days | PASS
+- ID: 176936 | Age: 1 days | Max: 3 days | PASS
+
+Personalized/Similarity Articles:
+- ID: 1160024 | Age: 1 days | Max: 8 days | PASS
+- ID: 176913 | Age: 1 days | Max: 8 days | PASS
+- ID: 7864210 | Age: 1 days | Max: 8 days | PASS
+- ID: 176897 | Age: 2 days | Max: 8 days | PASS
+- ID: 897479 | Age: 1 days | Max: 8 days | PASS
+- ID: 176901 | Age: 2 days | Max: 8 days | PASS
+- ID: 956834 | Age: 0 days | Max: 8 days | PASS
+- ID: 176881 | Age: 2 days | Max: 8 days | PASS
+- ID: 89019 | Age: 1 days | Max: 8 days | PASS
+- ID: 176920 | Age: 1 days | Max: 8 days | PASS</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Homepage Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Returned exactly 20 articles (10 personalized, 10 top-news)</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Homepage Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No blacklisted keywords found in titles</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Homepage Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No duplicate articles found</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Localization Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Localization Validation:
+Anchor Fallback Ranking:
+Main Anchor: City (&gt;50%)
+1. City = padang (100.0%)
+2. Province = sumatera barat (90.0%)
+3. Region = sumatera (100.0%)
+
+Dataset Validation:
+- Checking City:
+  Anchor: padang | Dataset: padang
+  Status: MATCH
+
+Winning Anchor: City (padang)
+Result: PASS
+
+Mismatch Articles: None
+</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Similarity Validation (RapidFuzz)</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell">
+                <div style="background-color: #f8f9fa; padding: 10px; border-left: 4px solid #007bff; border-radius: 4px; margin-bottom: 10px; color: #333; font-size: 13px;">
+                    <b>📊 MMR Observability Metrics</b><br>
+                    Average Ratio: <b>42.3</b> | 
+                    Max Ratio: <b>52.17</b> | 
+                    Threshold: <b>60.0</b> |
+                    Anomaly Gap: <b>25.0</b><br>
+                    Total Evaluated: 190 pairs | 
+                    Warnings: <span style="color: green;"><b>0</b></span> |
+                    Violations (Fails): <span style="color: green;"><b>0</b></span>
+                </div>
+                </td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Duplicate Image URL Position Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No adjacent duplicate images found.</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Section Title Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Seluruh artikel memiliki section_title yang valid</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Local vs Global Duplicate Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No duplicate articles found between Localized and Global mode.
+</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>6</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Global</td>
+                    <td>Latency Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Latency 177ms is &lt;= 200ms</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>6</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Global</td>
+                    <td>Recency Validation</td>
+                    <td class="FAIL">FAIL</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">FAIL: Recency validation failed or encountered errors
+
+Top News Articles:
+- ID: 1691863 | Age: 3 days | Max: 3 days | PASS
+- ID: 1691884 | Age: 3 days | Max: 3 days | PASS
+- ID: 7863184 | Age: 3 days | Max: 3 days | PASS
+- ID: 1846256 | Age: 3 days | Max: 3 days | PASS
+- ID: 1324867 | Age: 3 days | Max: 3 days | PASS
+- ID: 7862766 | Age: 4 days | Max: 3 days | FAIL
+- ID: 1805689 | Age: 4 days | Max: 3 days | FAIL
+- ID: 1037044 | Age: 3 days | Max: 3 days | PASS
+- ID: 1805902 | Age: 3 days | Max: 3 days | PASS
+- ID: 7862772 | Age: 4 days | Max: 3 days | FAIL
+
+Personalized/Similarity Articles:
+- ID: 104647 | Age: 3 days | Max: 8 days | PASS
+- ID: 1324883 | Age: 3 days | Max: 8 days | PASS
+- ID: 1037155 | Age: 3 days | Max: 8 days | PASS
+- ID: 128366 | Age: 3 days | Max: 8 days | PASS
+- ID: 554849 | Age: 3 days | Max: 8 days | PASS
+- ID: 1805892 | Age: 3 days | Max: 8 days | PASS
+- ID: 1025471 | Age: 3 days | Max: 8 days | PASS
+- ID: 1111015 | Age: 3 days | Max: 8 days | PASS
+- ID: 1691904 | Age: 3 days | Max: 8 days | PASS
+- ID: 1215149 | Age: 3 days | Max: 8 days | PASS</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>6</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Global</td>
+                    <td>Homepage Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Returned exactly 20 articles (10 personalized, 10 top-news)</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>6</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Global</td>
+                    <td>Homepage Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No blacklisted keywords found in titles</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>6</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Global</td>
+                    <td>Homepage Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No duplicate articles found</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>6</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Global</td>
+                    <td>Similarity Validation (RapidFuzz)</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell">
+                <div style="background-color: #f8f9fa; padding: 10px; border-left: 4px solid #007bff; border-radius: 4px; margin-bottom: 10px; color: #333; font-size: 13px;">
+                    <b>📊 MMR Observability Metrics</b><br>
+                    Average Ratio: <b>39.81</b> | 
+                    Max Ratio: <b>54.22</b> | 
+                    Threshold: <b>60.0</b> |
+                    Anomaly Gap: <b>25.0</b><br>
+                    Total Evaluated: 190 pairs | 
+                    Warnings: <span style="color: green;"><b>0</b></span> |
+                    Violations (Fails): <span style="color: green;"><b>0</b></span>
+                </div>
+                </td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>6</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Global</td>
+                    <td>Duplicate Image URL Position Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No adjacent duplicate images found.</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>6</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Global</td>
+                    <td>Section Title Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Seluruh artikel memiliki section_title yang valid</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>6</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Global</td>
+                    <td>Local vs Global Duplicate Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No duplicate articles found between Localized and Global mode.
+</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>7</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Mix</td>
+                    <td>Latency Validation</td>
+                    <td class="FAIL">FAIL</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Latency 858ms exceeds threshold of 300ms</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>7</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Mix</td>
+                    <td>Recency Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">PASS: Recency validation is valid
+
+Top News Articles:
+- ID: 176936 | Age: 1 days | Max: 3 days | PASS
+- ID: 7865121 | Age: 0 days | Max: 3 days | PASS
+- ID: 394227 | Age: 1 days | Max: 3 days | PASS
+- ID: 63056 | Age: 0 days | Max: 3 days | PASS
+- ID: 176940 | Age: 0 days | Max: 3 days | PASS
+- ID: 440178 | Age: 0 days | Max: 3 days | PASS
+- ID: 1037516 | Age: 0 days | Max: 3 days | PASS
+- ID: 1692121 | Age: 1 days | Max: 3 days | PASS
+- ID: 176951 | Age: 0 days | Max: 3 days | PASS
+- ID: 7864953 | Age: 0 days | Max: 3 days | PASS
+- ID: 176953 | Age: 0 days | Max: 3 days | PASS
+- ID: 7864847 | Age: 0 days | Max: 3 days | PASS
+- ID: 176956 | Age: 0 days | Max: 3 days | PASS
+- ID: 1037517 | Age: 0 days | Max: 3 days | PASS
+- ID: 176919 | Age: 1 days | Max: 3 days | PASS
+- ID: 7864443 | Age: 1 days | Max: 3 days | PASS
+- ID: 176952 | Age: 0 days | Max: 3 days | PASS
+- ID: 555241 | Age: 0 days | Max: 3 days | PASS
+- ID: 176900 | Age: 2 days | Max: 3 days | PASS
+- ID: 440151 | Age: 0 days | Max: 3 days | PASS
+
+Personalized/Similarity Articles:
+- ID: 1160024 | Age: 1 days | Max: 8 days | PASS
+- ID: 216327 | Age: 0 days | Max: 8 days | PASS
+- ID: 176897 | Age: 2 days | Max: 8 days | PASS
+- ID: 318975 | Age: 1 days | Max: 8 days | PASS
+- ID: 176907 | Age: 1 days | Max: 8 days | PASS
+- ID: 1180648 | Age: 1 days | Max: 8 days | PASS
+- ID: 176905 | Age: 1 days | Max: 8 days | PASS
+- ID: 7864202 | Age: 1 days | Max: 8 days | PASS
+- ID: 176896 | Age: 2 days | Max: 8 days | PASS
+- ID: 956872 | Age: 0 days | Max: 8 days | PASS
+- ID: 7864210 | Age: 1 days | Max: 8 days | PASS
+- ID: 104222 | Age: 0 days | Max: 8 days | PASS
+- ID: 176881 | Age: 2 days | Max: 8 days | PASS
+- ID: 237887 | Age: 0 days | Max: 8 days | PASS
+- ID: 176901 | Age: 2 days | Max: 8 days | PASS
+- ID: 1325160 | Age: 0 days | Max: 8 days | PASS
+- ID: 176957 | Age: 0 days | Max: 8 days | PASS
+- ID: 1202119 | Age: 0 days | Max: 8 days | PASS
+- ID: 176906 | Age: 1 days | Max: 8 days | PASS
+- ID: 89071 | Age: 0 days | Max: 8 days | PASS</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>7</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Mix</td>
+                    <td>Homepage Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Returned exactly 40 articles (20 personalized, 20 top-news)</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>7</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Mix</td>
+                    <td>Homepage Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No blacklisted keywords found in titles</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>7</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Mix</td>
+                    <td>Homepage Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No duplicate articles found</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>7</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Mix</td>
+                    <td>Localization Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Localization Validation:
+Anchor Fallback Ranking:
+Main Anchor: City (&gt;50%)
+1. City = padang (100.0%)
+2. Province = sumatera barat (90.0%)
+3. Region = sumatera (100.0%)
+
+Dataset Validation:
+- Checking City:
+  Anchor: padang | Dataset: padang
+  Status: MATCH
+
+Winning Anchor: City (padang)
+Result: PASS
+
+Mismatch Articles: None
+</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>7</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Mix</td>
+                    <td>Similarity Validation (RapidFuzz)</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell">
+                <div style="background-color: #f8f9fa; padding: 10px; border-left: 4px solid #007bff; border-radius: 4px; margin-bottom: 10px; color: #333; font-size: 13px;">
+                    <b>📊 MMR Observability Metrics</b><br>
+                    Average Ratio: <b>40.75</b> | 
+                    Max Ratio: <b>57.14</b> | 
+                    Threshold: <b>60.0</b> |
+                    Anomaly Gap: <b>25.0</b><br>
+                    Total Evaluated: 780 pairs | 
+                    Warnings: <span style="color: green;"><b>0</b></span> |
+                    Violations (Fails): <span style="color: green;"><b>0</b></span>
+                </div>
+                </td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>7</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Mix</td>
+                    <td>Duplicate Image URL Position Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No adjacent duplicate images found.</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>7</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Mix</td>
+                    <td>Section Title Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Seluruh artikel memiliki section_title yang valid</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>7</td>
+                    <td>Homepage Default</td>
+                    <td>test-9119</td>
+                    <td>182.4.71.244</td>
+                    <td>/homepage</td>
+                    <td>Mix</td>
+                    <td>Local vs Global Duplicate Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No duplicate articles found between Local and Global within Mix mode.
+</pre></details></td>
+                </tr>
+            
+            </table>
+        </body>
+        </html>
+        

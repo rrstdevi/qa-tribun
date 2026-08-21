@@ -1,0 +1,1146 @@
+
+        <html>
+        <head>
+            <title>TribunX Recommendation Validation Report</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                h1 { color: #333; }
+                .summary { background: #f9f9f9; padding: 15px; border: 1px solid #ddd; margin-bottom: 20px; }
+                table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; font-size: 14px; vertical-align: top; }
+                th { background-color: #f2f2f2; }
+                .PASS { color: green; font-weight: bold; }
+                .FAIL { color: red; font-weight: bold; }
+                .WARNING { color: orange; font-weight: bold; }
+                .ERROR { color: darkred; font-weight: bold; }
+                .COLD_START_USER { color: #1E3A8A; font-weight: bold; background-color: #DBEAFE; padding: 2px 4px; border-radius: 4px; }
+                .detail-cell { font-family: monospace; white-space: pre-wrap; }
+            </style>
+        </head>
+        <body>
+            <h1>TribunX Recommendation Validation Report</h1>
+            <div class="summary">
+                <h2>Summary Metrics</h2>
+                <p><strong>Config Used:</strong> MMR Lambda=0.7, Similarity Threshold=60.0</p>
+                <p><strong>Total Requests Analyzed:</strong> 4</p>
+                <hr>
+                <p><strong>Total Validation Rules Checked:</strong> 33</p>
+                <ul>
+                    <li class="PASS">PASS: 26</li>
+                    <li class="FAIL">FAIL: 6</li>
+                    <li class="WARNING">WARNING: 1</li>
+                    <li class="ERROR">ERROR: 0</li>
+                    <li class="COLD_START_USER">COLD START USER: 0</li>
+                </ul>
+                <hr>
+                <p><strong>Avg Latency:</strong> 354 ms</p>
+                <p><strong>Max Latency:</strong> 414 ms</p>
+            </div>
+            
+            <h2>Validation Details</h2>
+            <table>
+                <tr>
+                    <th>Row</th>
+                    <th>Scenario</th>
+                    <th>Client ID</th>
+                    <th>IP Address</th>
+                    <th>Endpoint</th>
+                    <th>Mode</th>
+                    <th>Validation Area</th>
+                    <th>Status</th>
+                    <th>Detail</th>
+                </tr>
+        <tr style="background-color: #2c3e50; color: white;"><td colspan="9" style="padding: 12px;"><b>Client ID: test-1235</b></td></tr><tr style="background-color: #dcdde1;"><td colspan="9"><b>📍 IP Address: 0</b></td></tr>
+                <tr style="background-color: #ffffff;">
+                    <td>2</td>
+                    <td>SCN-001: Berita Peluru</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/article</td>
+                    <td>Localized</td>
+                    <td>Latency Validation</td>
+                    <td class="FAIL">FAIL</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Latency 414ms exceeds threshold of 300ms</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>2</td>
+                    <td>SCN-001: Berita Peluru</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/article</td>
+                    <td>Localized</td>
+                    <td>Recency Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">PASS: Recency validation is valid
+
+Top News Articles:
+- ID: 1798233 | Age: 0 days | Max: 3 days | PASS
+
+Personalized/Similarity Articles:
+- ID: 174840 | Age: 0 days | Max: 30 days | PASS
+- ID: 174839 | Age: 0 days | Max: 30 days | PASS
+- ID: 7839658 | Age: 0 days | Max: 30 days | PASS
+- ID: 1029007 | Age: 0 days | Max: 30 days | PASS
+- ID: 1211114 | Age: 0 days | Max: 30 days | PASS
+- ID: 1798238 | Age: 0 days | Max: 30 days | PASS
+- ID: 126629 | Age: 0 days | Max: 30 days | PASS</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>2</td>
+                    <td>SCN-001: Berita Peluru</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/article</td>
+                    <td>Localized</td>
+                    <td>Article Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Total articles is 8</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>2</td>
+                    <td>SCN-001: Berita Peluru</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/article</td>
+                    <td>Localized</td>
+                    <td>Article Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">PASS: Composition is correct (7 similarity, 1 top-news)
+
+Similarity Articles:
+- ID: 174840 | Title: &quot;Peluru Nyasar UNP: Kondisi Korban Membaik, Kodam XX/TIB Janji Dampingi Hingga Pulih Total&quot; | Padang/Sumatera Barat/Sumatra
+- ID: 174839 | Title: &quot;TNI Akui Peluru G2 Combat Lukai Mahasiswi, Rektor UNP Tegaskan Kasus Peluru Nyasar UNP Sudah Clear&quot; | Padang/Sumatera Barat/Sumatra
+- ID: 7839658 | Title: &quot;Panik Balon Mata-Mata China, Militer AS Tembak Balon Pramuka Pakai Rudal Rp 8,1 M&quot; | Danau Huron/Michigan/Amerika Utara
+- ID: 1029007 | Title: &quot;450 Prajurit Yonif 117/Ksatria Yudha Kodam IM Siap Diberangkatkan ke Papua&quot; | Aceh Besar/Aceh/Sumatra
+- ID: 1211114 | Title: &quot;Satuan Narkoba Polresta Bandar Lampung Raih Juara Menembak Presisi&quot; | Bandar Lampung/Lampung/Sumatra
+- ID: 1798238 | Title: &quot;Nasib Pria Pecatan TNI AU Acungkan Pistol Saat Macet di Jalan Lintas Riau-Sumut Kini Ditangkap&quot; | Rokan Hilir/Riau/Sumatra
+- ID: 126629 | Title: &quot;Operasi SAR Ledakan Bom Biak Ditutup: 6 Tewas, 94 Serpihan Tubuh Diidentifikasi&quot; | Biak Numfor/Papua/Papua
+
+Top News Articles:
+- ID: 1798233 | Title: &quot;Rumah Disegel Bupatinya Ditangkap, KPK Ungkap Duduk Perkara OTT Suap terkait Proyek Sekolah&quot; | Muara Enim/Sumatera Selatan/Sumatra
+</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>2</td>
+                    <td>SCN-001: Berita Peluru</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/article</td>
+                    <td>Localized</td>
+                    <td>Article Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No duplicate articles found</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>2</td>
+                    <td>SCN-001: Berita Peluru</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/article</td>
+                    <td>Localized</td>
+                    <td>Localization Validation</td>
+                    <td class="FAIL">FAIL</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Localization Validation:
+Selected Anchor Level: region
+Anchor Value: sumatera
+
+Consistency Score:
+- City: 25.0%
+- Province: 25.0%
+- Region: 75.0%
+
+Reason:
+Region has the highest valid consistency score.
+
+Dataset Validation:
+Result: SKIPPED (IP not in dataset or missing field)
+
+Mismatch Articles:
+- Article ID 7839658
+  Region: amerika utara
+  Type: similarity
+  Result: FAIL (NOT DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 7839658,
+  &quot;site&quot;: &quot;tribunnews&quot;,
+  &quot;title&quot;: &quot;Panik Balon Mata-Mata China, Militer AS Tembak Balon Pramuka Pakai Rudal Rp 8,1 M&quot;,
+  &quot;subtitle&quot;: &quot;Amerika&quot;,
+  &quot;section_title&quot;: &quot;Internasional&quot;,
+  &quot;alias&quot;: &quot;internasional/7839658/panik-balon-mata-mata-china-militer-as-tembak-balon-pramuka-pakai-rudal-rp-81-m&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-08T21:26:13+07:00&quot;,
+  &quot;url&quot;: &quot;https://www.tribunnews.com/internasional/7839658/panik-balon-mata-mata-china-militer-as-tembak-balon-pramuka-pakai-rudal-rp-81-m&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/tribunnews/foto/bank/images/jet-tempur-AS-mendarat-di-atas-kapal-induk-mereka.jpg&quot;,
+  &quot;region&quot;: &quot;Amerika Utara&quot;,
+  &quot;city&quot;: &quot;Danau Huron&quot;,
+  &quot;province&quot;: &quot;Michigan&quot;,
+  &quot;type&quot;: &quot;similarity&quot;,
+  &quot;score&quot;: 0.4096
+}
+
+- Article ID 126629
+  Region: papua
+  Type: similarity
+  Result: FAIL (NOT DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 126629,
+  &quot;site&quot;: &quot;papua&quot;,
+  &quot;title&quot;: &quot;Operasi SAR Ledakan Bom Biak Ditutup: 6 Tewas, 94 Serpihan Tubuh Diidentifikasi&quot;,
+  &quot;subtitle&quot;: null,
+  &quot;section_title&quot;: &quot;Biak&quot;,
+  &quot;alias&quot;: &quot;biak/126629/operasi-sar-ledakan-bom-biak-ditutup-6-tewas-94-serpihan-tubuh-diidentifikasi&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-09T09:06:07+09:00&quot;,
+  &quot;url&quot;: &quot;https://papua.tribunnews.com/biak/126629/operasi-sar-ledakan-bom-biak-ditutup-6-tewas-94-serpihan-tubuh-diidentifikasi&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/papua/foto/bank/images/bosmo182.jpg&quot;,
+  &quot;region&quot;: &quot;Papua&quot;,
+  &quot;city&quot;: &quot;Biak Numfor&quot;,
+  &quot;province&quot;: &quot;Papua&quot;,
+  &quot;type&quot;: &quot;similarity&quot;,
+  &quot;score&quot;: 0.3566
+}
+</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>2</td>
+                    <td>SCN-001: Berita Peluru</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/article</td>
+                    <td>Localized</td>
+                    <td>Duplicate Image URL Position Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No adjacent duplicate images found.</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>3</td>
+                    <td>SCN-001: Berita Peluru</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/article</td>
+                    <td>Global</td>
+                    <td>Latency Validation</td>
+                    <td class="WARNING">WARNING</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Latency 285ms is within tolerance (200ms - 300ms)</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>3</td>
+                    <td>SCN-001: Berita Peluru</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/article</td>
+                    <td>Global</td>
+                    <td>Recency Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">PASS: Recency validation is valid
+
+Top News Articles:
+- ID: 1798233 | Age: 0 days | Max: 3 days | PASS
+
+Personalized/Similarity Articles:
+- ID: 174840 | Age: 0 days | Max: 30 days | PASS
+- ID: 174841 | Age: 0 days | Max: 30 days | PASS
+- ID: 1029007 | Age: 0 days | Max: 30 days | PASS
+- ID: 1798238 | Age: 0 days | Max: 30 days | PASS
+- ID: 7839715 | Age: 0 days | Max: 30 days | PASS
+- ID: 126629 | Age: 0 days | Max: 30 days | PASS
+- ID: 942100 | Age: 0 days | Max: 30 days | PASS</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>3</td>
+                    <td>SCN-001: Berita Peluru</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/article</td>
+                    <td>Global</td>
+                    <td>Article Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Total articles is 8</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>3</td>
+                    <td>SCN-001: Berita Peluru</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/article</td>
+                    <td>Global</td>
+                    <td>Article Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">PASS: Composition is correct (7 similarity, 1 top-news)
+
+Similarity Articles:
+- ID: 174840 | Title: &quot;Peluru Nyasar UNP: Kondisi Korban Membaik, Kodam XX/TIB Janji Dampingi Hingga Pulih Total&quot; | Padang/Sumatera Barat/Sumatra
+- ID: 174841 | Title: &quot;Peluru Nyasar di UNP Berulang Kali, Rektor Harap Pemindahan Lapangan Tembak TNI Jadi Solusi Permanen&quot; | Padang/Sumatera Barat/Sumatra
+- ID: 1029007 | Title: &quot;450 Prajurit Yonif 117/Ksatria Yudha Kodam IM Siap Diberangkatkan ke Papua&quot; | Aceh Besar/Aceh/Sumatra
+- ID: 1798238 | Title: &quot;Nasib Pria Pecatan TNI AU Acungkan Pistol Saat Macet di Jalan Lintas Riau-Sumut Kini Ditangkap&quot; | Rokan Hilir/Riau/Sumatra
+- ID: 7839715 | Title: &quot;Kesal Antrean Dipotong, Pecatan TNI AU Acungkan Senjata Saat Kemacetan di Rohil Riau&quot; | None/None/None
+- ID: 126629 | Title: &quot;Operasi SAR Ledakan Bom Biak Ditutup: 6 Tewas, 94 Serpihan Tubuh Diidentifikasi&quot; | Biak Numfor/Papua/Papua
+- ID: 942100 | Title: &quot;Rudal Houthi Menghujani Israel, Jenderal IDF Kocar-Kacir Sembunyi ke Bunker di Tengah Ketegangan&quot; | None/None/None
+
+Top News Articles:
+- ID: 1798233 | Title: &quot;Rumah Disegel Bupatinya Ditangkap, KPK Ungkap Duduk Perkara OTT Suap terkait Proyek Sekolah&quot; | Muara Enim/Sumatera Selatan/Sumatra
+</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>3</td>
+                    <td>SCN-001: Berita Peluru</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/article</td>
+                    <td>Global</td>
+                    <td>Article Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No duplicate articles found</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>3</td>
+                    <td>SCN-001: Berita Peluru</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/article</td>
+                    <td>Global</td>
+                    <td>Duplicate Image URL Position Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No adjacent duplicate images found.</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Latency Validation</td>
+                    <td class="FAIL">FAIL</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Latency 389ms exceeds threshold of 300ms</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Recency Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">PASS: Recency validation is valid
+
+Top News Articles:
+- ID: 1686529 | Age: 0 days | Max: 3 days | PASS
+- ID: 436582 | Age: 0 days | Max: 3 days | PASS
+- ID: 1319840 | Age: 0 days | Max: 3 days | PASS
+- ID: 1175190 | Age: 0 days | Max: 3 days | PASS
+- ID: 1019413 | Age: 0 days | Max: 3 days | PASS
+- ID: 7839347 | Age: 0 days | Max: 3 days | PASS
+- ID: 1798233 | Age: 0 days | Max: 3 days | PASS
+- ID: 1106898 | Age: 0 days | Max: 3 days | PASS
+- ID: 436583 | Age: 0 days | Max: 3 days | PASS
+- ID: 7839698 | Age: 0 days | Max: 3 days | PASS
+- ID: 315743 | Age: 0 days | Max: 3 days | PASS
+
+Personalized/Similarity Articles:
+- ID: 685517 | Age: 0 days | Max: 30 days | PASS
+- ID: 1152096 | Age: 0 days | Max: 30 days | PASS
+- ID: 1175263 | Age: 0 days | Max: 30 days | PASS
+- ID: 106460 | Age: 0 days | Max: 30 days | PASS
+- ID: 234789 | Age: 0 days | Max: 30 days | PASS
+- ID: 1211183 | Age: 0 days | Max: 30 days | PASS
+- ID: 1840520 | Age: 0 days | Max: 30 days | PASS
+- ID: 5939 | Age: 0 days | Max: 30 days | PASS
+- ID: 31103 | Age: 0 days | Max: 30 days | PASS</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Homepage Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Returned 20 articles (&lt;= 20)</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Homepage Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">PASS: Composition is valid (9 personalized, 11 top-news)
+
+Personalized Articles:
+- ID: 685517 | Title: &quot;Pelantikan Pengurus K3 Kepri, Disnakertrans Tekankan Keselamatan Kerja Demi Investasi Berkelanjutan&quot; | Batam/Kepulauan Riau/Sumatra
+- ID: 1152096 | Title: &quot;Lagi Tren di Balikpapan, Turnamen Sequence Vol 3 di Hola Padel Dibanjiri Peserta hingga Over Kuota&quot; | Balikpapan/Kalimantan Timur/Kalimantan
+- ID: 1175263 | Title: &quot;Lapas Ketapang Hadapi Keterbatasan Ruang, Pemkab Siap Perkuat Sinergi Pembinaan&quot; | Ketapang/Kalimantan Barat/Kalimantan
+- ID: 106460 | Title: &quot;Scoot Tambah Frekuensi Penerbangan Singapura-Lombok Menjadi 10 Kali Sepekan&quot; | Lombok Tengah/Nusa Tenggara Barat/Lombok
+- ID: 234789 | Title: &quot;Cara Live Streaming Pesta Bola Dunia WC 2026, di Palangka Raya Cari Jersey Messi dan Ronaldo&quot; | Palangka Raya/Kalimantan Tengah/Kalimantan
+- ID: 1211183 | Title: &quot;Musim Kemarau, Damkar Pesawaran Minta Masyarakat Tingkatkan Kewaspadaan&quot; | Pesawaran/Lampung/Sumatra
+- ID: 1840520 | Title: &quot;Promo Piala Dunia, Bosowa Berlian Motor Beri  DP Mulai 10 Persen&quot; | Makassar/Sulawesi Selatan/Sulawesi
+- ID: 5939 | Title: &quot;Demam Piala Dunia 2026: Fans Sulap Pantai Nabire Jadi Kampung Oranye Belanda&quot; | Nabire/Papua Tengah/Papua
+- ID: 31103 | Title: &quot;Hanya Bangun 7 Unit Rumah Pakai Dana Otsus Rp 8,7 M, Proyek di Mimika Diusut Jaksa&quot; | Mimika/Papua Tengah/Papua
+
+Top News Articles:
+- ID: 1686529 | Title: &quot;Tiket Pesawat dari Bangka Belitung Tembus Rp1 Juta, Warga Mulai Beralih ke Jalur Laut&quot; | Pangkalpinang/Kepulauan Bangka Belitung/Sumatra
+- ID: 436582 | Title: &quot;TRANSFER Rebutan Persija-Persib: Nadeo Dikejar, Perburuan Pertama STY Bisa Zonk, Kode Ini Terlihat&quot; | Jakarta/DKI Jakarta/Jawa
+- ID: 1319840 | Title: &quot;Daftar 3 Bupati Muara Enim yang Tersandung Kasus di KPK, Terbaru Bupati Edison Kena OTT&quot; | Muara Enim/Sumatera Selatan/Sumatra
+- ID: 1175190 | Title: &quot;Sinyal Eksodus Pemain Persib Bandung Menguat, Umuh Muchtar Sebut Skenario Kini Bisa 50-50&quot; | Bandung/Jawa Barat/Jawa
+- ID: 1019413 | Title: &quot;Pemprov Sumsel Lantik 43 Kepala SMA/SMK Baru di Tengah SPMB 2026&quot; | Palembang/Sumatera Selatan/Sumatra
+- ID: 7839347 | Title: &quot;Baru Dimutasi Oleh Kapolri, Irjen Pol Pipit Rismanto Diduga Terseret Kasus Aseng Bos Tambang Kalbar&quot; | None/Kalimantan Barat/Kalimantan
+- ID: 1798233 | Title: &quot;Rumah Disegel Bupatinya Ditangkap, KPK Ungkap Duduk Perkara OTT Suap terkait Proyek Sekolah&quot; | Muara Enim/Sumatera Selatan/Sumatra
+- ID: 1106898 | Title: &quot;Ambulans Bawa Pasien Jantung Terbalik di Tol Pekanbaru-Dumai Usai Tabrak Truk, 3 Orang Tewas&quot; | Siak/Riau/Sumatra
+- ID: 436583 | Title: &quot;TRANSFER Masuk Persija: 5 Pemain Jagoan Timnas Berpeluang Dibajak STY, Nama Ini Paling Dipercaya&quot; | Jakarta/DKI Jakarta/Jawa
+- ID: 7839698 | Title: &quot;Viral Pesta Gay di Tempat Hiburan Malam, Bupati Karawang Minta Satpol PP Bertindak&quot; | Karawang/Jawa Barat/Jawa
+- ID: 315743 | Title: &quot;Pengakuan Mantan Baby Sitter soal Sifat Asli Sarwendah, Bandingkan dengan Ruben Onsu: Beda di Kamera&quot; | Jakarta Selatan/DKI Jakarta/Jawa
+</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Homepage Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No blacklisted keywords found in titles</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Homepage Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No duplicate articles found</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Localization Validation</td>
+                    <td class="FAIL">FAIL</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Localization Validation:
+Selected Anchor Level: NONE
+Anchor Value: NONE
+
+Result:
+FAIL
+
+Reason:
+No hierarchy reached minimum consistency threshold (&gt;50%).
+
+Consistency Score:
+- City: 11.1%
+- Province: 22.2%
+- Region: 33.3%
+
+Dataset Validation:
+Result: SKIPPED (No valid anchor to compare)
+
+Mismatch Articles:
+- Article ID 1686529
+  City: Pangkalpinang | Prov: Kepulauan Bangka Belitung | Region: Sumatra
+  Type: top-news
+  Result: PASS (BACKFILL DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 1686529,
+  &quot;site&quot;: &quot;bangka&quot;,
+  &quot;title&quot;: &quot;Tiket Pesawat dari Bangka Belitung Tembus Rp1 Juta, Warga Mulai Beralih ke Jalur Laut&quot;,
+  &quot;subtitle&quot;: &quot;Pangkalpinang&quot;,
+  &quot;section_title&quot;: null,
+  &quot;alias&quot;: &quot;lokal/1686529/tiket-pesawat-dari-bangka-belitung-tembus-rp1-juta-warga-mulai-beralih-ke-jalur-laut&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-08T16:03:50+07:00&quot;,
+  &quot;url&quot;: &quot;https://bangka.tribunnews.com/lokal/1686529/tiket-pesawat-dari-bangka-belitung-tembus-rp1-juta-warga-mulai-beralih-ke-jalur-laut&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/bangka/foto/bank/images/20260608-Tangkapan-layar-pantauan-harga-tiket-pesawat-dari-Pangkalpinang-Jakarta.jpg&quot;,
+  &quot;region&quot;: &quot;Sumatra&quot;,
+  &quot;city&quot;: &quot;Pangkalpinang&quot;,
+  &quot;province&quot;: &quot;Kepulauan Bangka Belitung&quot;,
+  &quot;type&quot;: &quot;top-news&quot;,
+  &quot;score&quot;: 1.7525152912500868
+}
+
+- Article ID 685517
+  City: Batam | Prov: Kepulauan Riau | Region: Sumatra
+  Type: personalized
+  Result: FAIL (NOT DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 685517,
+  &quot;site&quot;: &quot;batam&quot;,
+  &quot;title&quot;: &quot;Pelantikan Pengurus K3 Kepri, Disnakertrans Tekankan Keselamatan Kerja Demi Investasi Berkelanjutan&quot;,
+  &quot;subtitle&quot;: null,
+  &quot;section_title&quot;: &quot;Kota Batam&quot;,
+  &quot;alias&quot;: &quot;kota-batam/685517/pelantikan-pengurus-k3-kepri-disnakertrans-tekankan-keselamatan-kerja-demi-investasi-berkelanjutan&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-09T09:32:45+07:00&quot;,
+  &quot;url&quot;: &quot;https://batam.tribunnews.com/kota-batam/685517/pelantikan-pengurus-k3-kepri-disnakertrans-tekankan-keselamatan-kerja-demi-investasi-berkelanjutan&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/batam/foto/bank/images/Pengunjung-mendengarkan-arahan-Kadisnaker-pada-acara-pelantikan-dan-diskusi-di-Aula-Tribun.jpg&quot;,
+  &quot;region&quot;: &quot;Sumatra&quot;,
+  &quot;city&quot;: &quot;Batam&quot;,
+  &quot;province&quot;: &quot;Kepulauan Riau&quot;,
+  &quot;type&quot;: &quot;personalized&quot;,
+  &quot;score&quot;: 6.152751155213638
+}
+
+- Article ID 1152096
+  City: Balikpapan | Prov: Kalimantan Timur | Region: Kalimantan
+  Type: personalized
+  Result: FAIL (NOT DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 1152096,
+  &quot;site&quot;: &quot;kaltim&quot;,
+  &quot;title&quot;: &quot;Lagi Tren di Balikpapan, Turnamen Sequence Vol 3 di Hola Padel Dibanjiri Peserta hingga Over Kuota&quot;,
+  &quot;subtitle&quot;: &quot;Sport Kaltim&quot;,
+  &quot;section_title&quot;: &quot;Sport&quot;,
+  &quot;alias&quot;: &quot;sport/1152096/lagi-tren-di-balikpapan-turnamen-sequence-vol-3-di-hola-padel-dibanjiri-peserta-hingga-over-kuota&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-09T07:14:50+08:00&quot;,
+  &quot;url&quot;: &quot;https://kaltim.tribunnews.com/sport/1152096/lagi-tren-di-balikpapan-turnamen-sequence-vol-3-di-hola-padel-dibanjiri-peserta-hingga-over-kuota&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/kaltim/foto/bank/images/20260609_Demam-board-game-strategi-Sequence-benar-benar-lagi-mewabah-di-Balikpapan.jpg&quot;,
+  &quot;region&quot;: &quot;Kalimantan&quot;,
+  &quot;city&quot;: &quot;Balikpapan&quot;,
+  &quot;province&quot;: &quot;Kalimantan Timur&quot;,
+  &quot;type&quot;: &quot;personalized&quot;,
+  &quot;score&quot;: 6.083358513727623
+}
+
+- Article ID 436582
+  City: Jakarta | Prov: DKI Jakarta | Region: Jawa
+  Type: top-news
+  Result: PASS (BACKFILL DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 436582,
+  &quot;site&quot;: &quot;jakarta&quot;,
+  &quot;title&quot;: &quot;TRANSFER Rebutan Persija-Persib: Nadeo Dikejar, Perburuan Pertama STY Bisa Zonk, Kode Ini Terlihat&quot;,
+  &quot;subtitle&quot;: &quot;Indonesia&quot;,
+  &quot;section_title&quot;: &quot;Superball&quot;,
+  &quot;alias&quot;: &quot;superball/436582/transfer-rebutan-persija-persib-nadeo-dikejar-perburuan-pertama-sty-bisa-zonk-kode-ini-terlihat&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-09T06:19:04+07:00&quot;,
+  &quot;url&quot;: &quot;https://jakarta.tribunnews.com/superball/436582/transfer-rebutan-persija-persib-nadeo-dikejar-perburuan-pertama-sty-bisa-zonk-kode-ini-terlihat&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/jakarta/foto/bank/images/RUMOR-TRANSFER-PERSIJA-The-Jak-sudah-sambut-Shin-Tae-yong.jpg&quot;,
+  &quot;region&quot;: &quot;Jawa&quot;,
+  &quot;city&quot;: &quot;Jakarta&quot;,
+  &quot;province&quot;: &quot;DKI Jakarta&quot;,
+  &quot;type&quot;: &quot;top-news&quot;,
+  &quot;score&quot;: 2.037628912146574
+}
+
+- Article ID 1319840
+  City: Muara Enim | Prov: Sumatera Selatan | Region: Sumatra
+  Type: top-news
+  Result: PASS (BACKFILL DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 1319840,
+  &quot;site&quot;: &quot;palembang&quot;,
+  &quot;title&quot;: &quot;Daftar 3 Bupati Muara Enim yang Tersandung Kasus di KPK, Terbaru Bupati Edison Kena OTT&quot;,
+  &quot;subtitle&quot;: &quot;Crime Story&quot;,
+  &quot;section_title&quot;: &quot;Metropolis&quot;,
+  &quot;alias&quot;: &quot;metro/1319840/daftar-3-bupati-muara-enim-yang-tersandung-kasus-di-kpk-terbaru-bupati-edison-kena-ott&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-08T17:36:31+07:00&quot;,
+  &quot;url&quot;: &quot;https://palembang.tribunnews.com/metro/1319840/daftar-3-bupati-muara-enim-yang-tersandung-kasus-di-kpk-terbaru-bupati-edison-kena-ott&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/palembang/foto/bank/images/Bupati-Edison-menegaskan-penentuan-nilai-ganti-rugi-lahan.jpg&quot;,
+  &quot;region&quot;: &quot;Sumatra&quot;,
+  &quot;city&quot;: &quot;Muara Enim&quot;,
+  &quot;province&quot;: &quot;Sumatera Selatan&quot;,
+  &quot;type&quot;: &quot;top-news&quot;,
+  &quot;score&quot;: 1.7470990916553468
+}
+
+- Article ID 1175190
+  City: Bandung | Prov: Jawa Barat | Region: Jawa
+  Type: top-news
+  Result: PASS (BACKFILL DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 1175190,
+  &quot;site&quot;: &quot;jabar&quot;,
+  &quot;title&quot;: &quot;Sinyal Eksodus Pemain Persib Bandung Menguat, Umuh Muchtar Sebut Skenario Kini Bisa 50-50&quot;,
+  &quot;subtitle&quot;: &quot;Persib Bandung&quot;,
+  &quot;section_title&quot;: &quot;Super Ball&quot;,
+  &quot;alias&quot;: &quot;superball/1175190/sinyal-eksodus-pemain-persib-bandung-menguat-umuh-muchtar-sebut-skenario-kini-bisa-50-50&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-08T18:50:50+07:00&quot;,
+  &quot;url&quot;: &quot;https://jabar.tribunnews.com/superball/1175190/sinyal-eksodus-pemain-persib-bandung-menguat-umuh-muchtar-sebut-skenario-kini-bisa-50-50&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/jabar/foto/bank/images/Persib-Bandung-Andrew-Jung-berpegangan-erat-dengan-rekan-sa.jpg&quot;,
+  &quot;region&quot;: &quot;Jawa&quot;,
+  &quot;city&quot;: &quot;Bandung&quot;,
+  &quot;province&quot;: &quot;Jawa Barat&quot;,
+  &quot;type&quot;: &quot;top-news&quot;,
+  &quot;score&quot;: 2.061869107930851
+}
+
+- Article ID 1175263
+  City: Ketapang | Prov: Kalimantan Barat | Region: Kalimantan
+  Type: personalized
+  Result: FAIL (NOT DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 1175263,
+  &quot;site&quot;: &quot;pontianak&quot;,
+  &quot;title&quot;: &quot;Lapas Ketapang Hadapi Keterbatasan Ruang, Pemkab Siap Perkuat Sinergi Pembinaan&quot;,
+  &quot;subtitle&quot;: &quot;Ketapang&quot;,
+  &quot;section_title&quot;: &quot;Kalbar&quot;,
+  &quot;alias&quot;: &quot;kalbar/1175263/lapas-ketapang-hadapi-keterbatasan-ruang-pemkab-siap-perkuat-sinergi-pembinaan&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-09T08:07:31+07:00&quot;,
+  &quot;url&quot;: &quot;https://pontianak.tribunnews.com/kalbar/1175263/lapas-ketapang-hadapi-keterbatasan-ruang-pemkab-siap-perkuat-sinergi-pembinaan&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/pontianak/foto/bank/images/Audiensi-Lapas-Ketapang0906.jpg&quot;,
+  &quot;region&quot;: &quot;Kalimantan&quot;,
+  &quot;city&quot;: &quot;Ketapang&quot;,
+  &quot;province&quot;: &quot;Kalimantan Barat&quot;,
+  &quot;type&quot;: &quot;personalized&quot;,
+  &quot;score&quot;: 6.066385859009214
+}
+
+- Article ID 1019413
+  City: Palembang | Prov: Sumatera Selatan | Region: Sumatra
+  Type: top-news
+  Result: PASS (BACKFILL DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 1019413,
+  &quot;site&quot;: &quot;sumsel&quot;,
+  &quot;title&quot;: &quot;Pemprov Sumsel Lantik 43 Kepala SMA/SMK Baru di Tengah SPMB 2026&quot;,
+  &quot;subtitle&quot;: null,
+  &quot;section_title&quot;: &quot;Palembang&quot;,
+  &quot;alias&quot;: &quot;palembang/1019413/pemprov-sumsel-lantik-43-kepala-smasmk-baru-di-tengah-spmb-2026&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-08T20:44:49+07:00&quot;,
+  &quot;url&quot;: &quot;https://sumsel.tribunnews.com/palembang/1019413/pemprov-sumsel-lantik-43-kepala-smasmk-baru-di-tengah-spmb-2026&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/sumsel/foto/bank/images/Pemprov-Sumsel-Lantik-43-Kepala-SMASMK-Baru-di-Tengah-SPMB-2026.jpg&quot;,
+  &quot;region&quot;: &quot;Sumatra&quot;,
+  &quot;city&quot;: &quot;Palembang&quot;,
+  &quot;province&quot;: &quot;Sumatera Selatan&quot;,
+  &quot;type&quot;: &quot;top-news&quot;,
+  &quot;score&quot;: 1.8658169985721411
+}
+
+- Article ID 106460
+  City: Lombok Tengah | Prov: Nusa Tenggara Barat | Region: Lombok
+  Type: personalized
+  Result: FAIL (NOT DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 106460,
+  &quot;site&quot;: &quot;lombok&quot;,
+  &quot;title&quot;: &quot;Scoot Tambah Frekuensi Penerbangan Singapura-Lombok Menjadi 10 Kali Sepekan&quot;,
+  &quot;subtitle&quot;: &quot;Daerah&quot;,
+  &quot;section_title&quot;: null,
+  &quot;alias&quot;: &quot;news/106460/scoot-tambah-frekuensi-penerbangan-singapura-lombok-menjadi-10-kali-sepekan&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-09T10:13:53+08:00&quot;,
+  &quot;url&quot;: &quot;https://lombok.tribunnews.com/news/106460/scoot-tambah-frekuensi-penerbangan-singapura-lombok-menjadi-10-kali-sepekan&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/lombok/foto/bank/images/SCOOT-MENMABH-FREKUENSI-PENERBANGAN-DI-BIZAM.jpg&quot;,
+  &quot;region&quot;: &quot;Lombok&quot;,
+  &quot;city&quot;: &quot;Lombok Tengah&quot;,
+  &quot;province&quot;: &quot;Nusa Tenggara Barat&quot;,
+  &quot;type&quot;: &quot;personalized&quot;,
+  &quot;score&quot;: 6.130177790151023
+}
+
+- Article ID 7839347
+  City: None | Prov: Kalimantan Barat | Region: Kalimantan
+  Type: top-news
+  Result: PASS (BACKFILL DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 7839347,
+  &quot;site&quot;: &quot;tribunnews&quot;,
+  &quot;title&quot;: &quot;Baru Dimutasi Oleh Kapolri, Irjen Pol Pipit Rismanto Diduga Terseret Kasus Aseng Bos Tambang Kalbar&quot;,
+  &quot;subtitle&quot;: &quot;Hukum&quot;,
+  &quot;section_title&quot;: null,
+  &quot;alias&quot;: &quot;nasional/7839347/baru-dimutasi-oleh-kapolri-irjen-pol-pipit-rismanto-diduga-terseret-kasus-aseng-bos-tambang-kalbar&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-08T12:17:10+07:00&quot;,
+  &quot;url&quot;: &quot;https://www.tribunnews.com/nasional/7839347/baru-dimutasi-oleh-kapolri-irjen-pol-pipit-rismanto-diduga-terseret-kasus-aseng-bos-tambang-kalbar&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/tribunnews/foto/bank/images/Kapolda-Jabar-Irjen-Pol-Pipit-Rismanto.jpg&quot;,
+  &quot;region&quot;: &quot;Kalimantan&quot;,
+  &quot;city&quot;: null,
+  &quot;province&quot;: &quot;Kalimantan Barat&quot;,
+  &quot;type&quot;: &quot;top-news&quot;,
+  &quot;score&quot;: 2.1650266941578575
+}
+
+- Article ID 1798233
+  City: Muara Enim | Prov: Sumatera Selatan | Region: Sumatra
+  Type: top-news
+  Result: PASS (BACKFILL DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 1798233,
+  &quot;site&quot;: &quot;medan&quot;,
+  &quot;title&quot;: &quot;Rumah Disegel Bupatinya Ditangkap, KPK Ungkap Duduk Perkara OTT Suap terkait Proyek Sekolah&quot;,
+  &quot;subtitle&quot;: &quot;Nasional&quot;,
+  &quot;section_title&quot;: &quot;News&quot;,
+  &quot;alias&quot;: &quot;news/1798233/rumah-disegel-bupatinya-ditangkap-kpk-ungkap-duduk-perkara-ott-suap-terkait-proyek-sekolah&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-09T06:34:07+07:00&quot;,
+  &quot;url&quot;: &quot;https://medan.tribunnews.com/news/1798233/rumah-disegel-bupatinya-ditangkap-kpk-ungkap-duduk-perkara-ott-suap-terkait-proyek-sekolah&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/medan/foto/bank/images/Bupati-muara-enim-ditangkap-KPK-OTT-KPK.jpg&quot;,
+  &quot;region&quot;: &quot;Sumatra&quot;,
+  &quot;city&quot;: &quot;Muara Enim&quot;,
+  &quot;province&quot;: &quot;Sumatera Selatan&quot;,
+  &quot;type&quot;: &quot;top-news&quot;,
+  &quot;score&quot;: 2.310157804497254
+}
+
+- Article ID 1106898
+  City: Siak | Prov: Riau | Region: Sumatra
+  Type: top-news
+  Result: PASS (BACKFILL DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 1106898,
+  &quot;site&quot;: &quot;pekanbaru&quot;,
+  &quot;title&quot;: &quot;Ambulans Bawa Pasien Jantung Terbalik di Tol Pekanbaru-Dumai Usai Tabrak Truk, 3 Orang Tewas&quot;,
+  &quot;subtitle&quot;: null,
+  &quot;section_title&quot;: &quot;Riau Region&quot;,
+  &quot;alias&quot;: &quot;riau-region/1106898/ambulans-bawa-pasien-jantung-terbalik-di-tol-pekanbaru-dumai-usai-tabrak-truk-3-orang-tewas&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-08T12:35:23+07:00&quot;,
+  &quot;url&quot;: &quot;https://pekanbaru.tribunnews.com/riau-region/1106898/ambulans-bawa-pasien-jantung-terbalik-di-tol-pekanbaru-dumai-usai-tabrak-truk-3-orang-tewas&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/pekanbaru/foto/bank/images/Ambulans-terbalik-usai-tabrak-truk-di-Tol-Pekanbaru-Dumai-sebabkan-3-orang-tewas.jpg&quot;,
+  &quot;region&quot;: &quot;Sumatra&quot;,
+  &quot;city&quot;: &quot;Siak&quot;,
+  &quot;province&quot;: &quot;Riau&quot;,
+  &quot;type&quot;: &quot;top-news&quot;,
+  &quot;score&quot;: 1.907938245635905
+}
+
+- Article ID 234789
+  City: Palangka Raya | Prov: Kalimantan Tengah | Region: Kalimantan
+  Type: personalized
+  Result: FAIL (NOT DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 234789,
+  &quot;site&quot;: &quot;kalteng&quot;,
+  &quot;title&quot;: &quot;Cara Live Streaming Pesta Bola Dunia WC 2026, di Palangka Raya Cari Jersey Messi dan Ronaldo&quot;,
+  &quot;subtitle&quot;: &quot;Lainnya&quot;,
+  &quot;section_title&quot;: &quot;Super Ball&quot;,
+  &quot;alias&quot;: &quot;superball/234789/cara-live-streaming-pesta-bola-dunia-wc-2026-di-palangka-raya-cari-jersey-messi-dan-ronaldo&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-08T17:40:01+07:00&quot;,
+  &quot;url&quot;: &quot;https://kalteng.tribunnews.com/superball/234789/cara-live-streaming-pesta-bola-dunia-wc-2026-di-palangka-raya-cari-jersey-messi-dan-ronaldo&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/kalteng/foto/bank/images/jersey-timnas-argentina-piala-dunia-2026.jpg&quot;,
+  &quot;region&quot;: &quot;Kalimantan&quot;,
+  &quot;city&quot;: &quot;Palangka Raya&quot;,
+  &quot;province&quot;: &quot;Kalimantan Tengah&quot;,
+  &quot;type&quot;: &quot;personalized&quot;,
+  &quot;score&quot;: 6.252352930485543
+}
+
+- Article ID 1211183
+  City: Pesawaran | Prov: Lampung | Region: Sumatra
+  Type: personalized
+  Result: FAIL (NOT DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 1211183,
+  &quot;site&quot;: &quot;lampung&quot;,
+  &quot;title&quot;: &quot;Musim Kemarau, Damkar Pesawaran Minta Masyarakat Tingkatkan Kewaspadaan&quot;,
+  &quot;subtitle&quot;: &quot;Pesawaran&quot;,
+  &quot;section_title&quot;: &quot;Lampung&quot;,
+  &quot;alias&quot;: &quot;lampung/1211183/musim-kemarau-damkar-pesawaran-minta-masyarakat-tingkatkan-kewaspadaan&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-09T07:41:47+07:00&quot;,
+  &quot;url&quot;: &quot;https://lampung.tribunnews.com/lampung/1211183/musim-kemarau-damkar-pesawaran-minta-masyarakat-tingkatkan-kewaspadaan&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/lampung/foto/bank/images/WASPADA-Pemadam-Kebakaran-Kabupaten-Pesawaran.jpg&quot;,
+  &quot;region&quot;: &quot;Sumatra&quot;,
+  &quot;city&quot;: &quot;Pesawaran&quot;,
+  &quot;province&quot;: &quot;Lampung&quot;,
+  &quot;type&quot;: &quot;personalized&quot;,
+  &quot;score&quot;: 6.055009548173484
+}
+
+- Article ID 1840520
+  City: Makassar | Prov: Sulawesi Selatan | Region: Sulawesi
+  Type: personalized
+  Result: FAIL (NOT DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 1840520,
+  &quot;site&quot;: &quot;makassar&quot;,
+  &quot;title&quot;: &quot;Promo Piala Dunia, Bosowa Berlian Motor Beri  DP Mulai 10 Persen&quot;,
+  &quot;subtitle&quot;: &quot;Produk Mobil&quot;,
+  &quot;section_title&quot;: &quot;Otomotif&quot;,
+  &quot;alias&quot;: &quot;otomotif/1840520/promo-piala-dunia-bosowa-berlian-motor-beri-dp-mulai-10-persen&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-08T13:43:35+08:00&quot;,
+  &quot;url&quot;: &quot;https://makassar.tribunnews.com/otomotif/1840520/promo-piala-dunia-bosowa-berlian-motor-beri-dp-mulai-10-persen&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/makassar/foto/bank/images/All-New-Mitsubishi-Destinator-di-Hotel-Gammara_762026_.jpg&quot;,
+  &quot;region&quot;: &quot;Sulawesi&quot;,
+  &quot;city&quot;: &quot;Makassar&quot;,
+  &quot;province&quot;: &quot;Sulawesi Selatan&quot;,
+  &quot;type&quot;: &quot;personalized&quot;,
+  &quot;score&quot;: 6.201331417066871
+}
+
+- Article ID 436583
+  City: Jakarta | Prov: DKI Jakarta | Region: Jawa
+  Type: top-news
+  Result: PASS (BACKFILL DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 436583,
+  &quot;site&quot;: &quot;jakarta&quot;,
+  &quot;title&quot;: &quot;TRANSFER Masuk Persija: 5 Pemain Jagoan Timnas Berpeluang Dibajak STY, Nama Ini Paling Dipercaya&quot;,
+  &quot;subtitle&quot;: null,
+  &quot;section_title&quot;: &quot;Persija&quot;,
+  &quot;alias&quot;: &quot;persija/436583/transfer-masuk-persija-5-pemain-jagoan-timnas-berpeluang-dibajak-sty-nama-ini-paling-dipercaya&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-09T06:55:32+07:00&quot;,
+  &quot;url&quot;: &quot;https://jakarta.tribunnews.com/persija/436583/transfer-masuk-persija-5-pemain-jagoan-timnas-berpeluang-dibajak-sty-nama-ini-paling-dipercaya&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/jakarta/foto/bank/images/transfer-masuk-persija-jakarta-super-league.jpg&quot;,
+  &quot;region&quot;: &quot;Jawa&quot;,
+  &quot;city&quot;: &quot;Jakarta&quot;,
+  &quot;province&quot;: &quot;DKI Jakarta&quot;,
+  &quot;type&quot;: &quot;top-news&quot;,
+  &quot;score&quot;: 2.059849006074107
+}
+
+- Article ID 7839698
+  City: Karawang | Prov: Jawa Barat | Region: Jawa
+  Type: top-news
+  Result: PASS (BACKFILL DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 7839698,
+  &quot;site&quot;: &quot;tribunnews&quot;,
+  &quot;title&quot;: &quot;Viral Pesta Gay di Tempat Hiburan Malam, Bupati Karawang Minta Satpol PP Bertindak&quot;,
+  &quot;subtitle&quot;: &quot;Jawa &amp; Bali&quot;,
+  &quot;section_title&quot;: &quot;Regional&quot;,
+  &quot;alias&quot;: &quot;regional/7839698/viral-pesta-gay-di-tempat-hiburan-malam-bupati-karawang-minta-satpol-pp-bertindak&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-09T05:13:05+07:00&quot;,
+  &quot;url&quot;: &quot;https://www.tribunnews.com/regional/7839698/viral-pesta-gay-di-tempat-hiburan-malam-bupati-karawang-minta-satpol-pp-bertindak&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/tribunnews/foto/bank/images/Bupati-Karawang-Aep-Syaepuloh.jpg&quot;,
+  &quot;region&quot;: &quot;Jawa&quot;,
+  &quot;city&quot;: &quot;Karawang&quot;,
+  &quot;province&quot;: &quot;Jawa Barat&quot;,
+  &quot;type&quot;: &quot;top-news&quot;,
+  &quot;score&quot;: 1.8620006286488926
+}
+
+- Article ID 315743
+  City: Jakarta Selatan | Prov: DKI Jakarta | Region: Jawa
+  Type: top-news
+  Result: PASS (BACKFILL DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 315743,
+  &quot;site&quot;: &quot;bogor&quot;,
+  &quot;title&quot;: &quot;Pengakuan Mantan Baby Sitter soal Sifat Asli Sarwendah, Bandingkan dengan Ruben Onsu: Beda di Kamera&quot;,
+  &quot;subtitle&quot;: &quot;Gosipi&quot;,
+  &quot;section_title&quot;: &quot;Seleb&quot;,
+  &quot;alias&quot;: &quot;seleb/315743/pengakuan-mantan-baby-sitter-soal-sifat-asli-sarwendah-bandingkan-dengan-ruben-onsu-beda-di-kamera&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-08T14:16:19+07:00&quot;,
+  &quot;url&quot;: &quot;https://bogor.tribunnews.com/seleb/315743/pengakuan-mantan-baby-sitter-soal-sifat-asli-sarwendah-bandingkan-dengan-ruben-onsu-beda-di-kamera&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/bogor/foto/bank/images/Mantan-pengasuh-ungkap-tabiat-asli-Sarwendah.jpg&quot;,
+  &quot;region&quot;: &quot;Jawa&quot;,
+  &quot;city&quot;: &quot;Jakarta Selatan&quot;,
+  &quot;province&quot;: &quot;DKI Jakarta&quot;,
+  &quot;type&quot;: &quot;top-news&quot;,
+  &quot;score&quot;: 1.6875248346227032
+}
+
+- Article ID 5939
+  City: Nabire | Prov: Papua Tengah | Region: Papua
+  Type: personalized
+  Result: FAIL (NOT DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 5939,
+  &quot;site&quot;: &quot;papuatengah&quot;,
+  &quot;title&quot;: &quot;Demam Piala Dunia 2026: Fans Sulap Pantai Nabire Jadi Kampung Oranye Belanda&quot;,
+  &quot;subtitle&quot;: null,
+  &quot;section_title&quot;: &quot;Nabire&quot;,
+  &quot;alias&quot;: &quot;nabire/5939/demam-piala-dunia-2026-fans-sulap-pantai-nabire-jadi-kampung-oranye-belanda&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-09T10:52:30+09:00&quot;,
+  &quot;url&quot;: &quot;https://papuatengah.tribunnews.com/nabire/5939/demam-piala-dunia-2026-fans-sulap-pantai-nabire-jadi-kampung-oranye-belanda&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/papuatengah/foto/bank/images/9-Junia-2026-fans-pl.jpg&quot;,
+  &quot;region&quot;: &quot;Papua&quot;,
+  &quot;city&quot;: &quot;Nabire&quot;,
+  &quot;province&quot;: &quot;Papua Tengah&quot;,
+  &quot;type&quot;: &quot;personalized&quot;,
+  &quot;score&quot;: 6.308957214340582
+}
+
+- Article ID 31103
+  City: Mimika | Prov: Papua Tengah | Region: Papua
+  Type: personalized
+  Result: FAIL (NOT DETECTED)
+  Raw JSON:
+{
+  &quot;id&quot;: 31103,
+  &quot;site&quot;: &quot;sorong&quot;,
+  &quot;title&quot;: &quot;Hanya Bangun 7 Unit Rumah Pakai Dana Otsus Rp 8,7 M, Proyek di Mimika Diusut Jaksa&quot;,
+  &quot;subtitle&quot;: &quot;Papua Tengah&quot;,
+  &quot;section_title&quot;: &quot;Papua&quot;,
+  &quot;alias&quot;: &quot;papua/31103/hanya-bangun-7-unit-rumah-pakai-dana-otsus-rp-87-m-proyek-di-mimika-diusut-jaksa&quot;,
+  &quot;publish_date&quot;: &quot;2026-06-09T09:10:21+09:00&quot;,
+  &quot;url&quot;: &quot;https://sorong.tribunnews.com/papua/31103/hanya-bangun-7-unit-rumah-pakai-dana-otsus-rp-87-m-proyek-di-mimika-diusut-jaksa&quot;,
+  &quot;foto&quot;: &quot;https://asset-2.tribunnews.com/sorong/foto/bank/images/20260609_ldngfnn.jpg&quot;,
+  &quot;region&quot;: &quot;Papua&quot;,
+  &quot;city&quot;: &quot;Mimika&quot;,
+  &quot;province&quot;: &quot;Papua Tengah&quot;,
+  &quot;type&quot;: &quot;personalized&quot;,
+  &quot;score&quot;: 6.0414914726465465
+}
+</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Similarity Validation (RapidFuzz)</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell">
+                <div style="background-color: #f8f9fa; padding: 10px; border-left: 4px solid #007bff; border-radius: 4px; margin-bottom: 10px; color: #333; font-size: 13px;">
+                    <b>📊 MMR Observability Metrics</b><br>
+                    Average Ratio: <b>40.64</b> | 
+                    Max Ratio: <b>54.26</b> | 
+                    Threshold: <b>60.0</b> |
+                    Anomaly Gap: <b>25.0</b><br>
+                    Total Evaluated: 190 pairs | 
+                    Warnings: <span style="color: green;"><b>0</b></span> |
+                    Violations (Fails): <span style="color: green;"><b>0</b></span>
+                </div>
+                </td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Duplicate Image URL Position Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No adjacent duplicate images found.</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>IP Undetected Duplicate Title Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No identical titles found for undetected IP.</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>4</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Localized</td>
+                    <td>Cold Start Validation</td>
+                    <td class="FAIL">FAIL</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Final Result:
+FAIL
+
+Reason:
+Localized inconsistency detected but personalized article still exists.
+- Localized mode has personalized articles: 685517, 1152096, 1175263, 106460, 234789, 1211183, 1840520, 5939, 31103
+- Global mode has personalized articles: 1686565, 1152098, 1255903, 599252, 372314, 1216279, 1798243, 942089</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Global</td>
+                    <td>Latency Validation</td>
+                    <td class="FAIL">FAIL</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Latency 327ms exceeds threshold of 300ms</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Global</td>
+                    <td>Recency Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">PASS: Recency validation is valid
+
+Top News Articles:
+- ID: 1175190 | Age: 0 days | Max: 3 days | PASS
+- ID: 1686529 | Age: 0 days | Max: 3 days | PASS
+- ID: 1941446 | Age: 0 days | Max: 3 days | PASS
+- ID: 315743 | Age: 0 days | Max: 3 days | PASS
+- ID: 1798155 | Age: 0 days | Max: 3 days | PASS
+- ID: 1798233 | Age: 0 days | Max: 3 days | PASS
+- ID: 7839347 | Age: 0 days | Max: 3 days | PASS
+- ID: 1106898 | Age: 0 days | Max: 3 days | PASS
+- ID: 1364294 | Age: 0 days | Max: 3 days | PASS
+- ID: 1028962 | Age: 0 days | Max: 3 days | PASS
+- ID: 1798228 | Age: 0 days | Max: 3 days | PASS
+- ID: 38195 | Age: 0 days | Max: 3 days | PASS
+
+Personalized/Similarity Articles:
+- ID: 1686565 | Age: 0 days | Max: 30 days | PASS
+- ID: 1152098 | Age: 0 days | Max: 30 days | PASS
+- ID: 1255903 | Age: 0 days | Max: 30 days | PASS
+- ID: 599252 | Age: 0 days | Max: 30 days | PASS
+- ID: 372314 | Age: 0 days | Max: 30 days | PASS
+- ID: 1216279 | Age: 0 days | Max: 30 days | PASS
+- ID: 1798243 | Age: 0 days | Max: 30 days | PASS
+- ID: 942089 | Age: 0 days | Max: 30 days | PASS</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Global</td>
+                    <td>Homepage Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">Returned 20 articles (&lt;= 20)</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Global</td>
+                    <td>Homepage Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">PASS: Composition is valid (8 personalized, 12 top-news)
+
+Personalized Articles:
+- ID: 1686565 | Title: &quot;Update Tarif Listrik Juni 2026, Beli Token Rp 50.000 Dapat Berapa kWh?&quot; | Jakarta/DKI Jakarta/Jawa
+- ID: 1152098 | Title: &quot;Efek Bruno Fernandes, Fans MU Asal Balikpapan Ini Prediksi Portugal Masuk 3 Besar Piala Dunia 2026&quot; | Balikpapan/Kalimantan Timur/Kalimantan
+- ID: 1255903 | Title: &quot;Mageri Segoro di Pantai Tirang, 2.000 Mangrove Ditanam untuk Bentengi Pesisir Semarang&quot; | Semarang/Jawa Tengah/Jawa
+- ID: 599252 | Title: &quot;Bupati Badung Paparkan Strategi Pembangunan dalam Dukung Pariwisata, Infrastruktur Fokus Utama&quot; | Badung/Bali/Bali
+- ID: 372314 | Title: &quot;Mau Main ke Saloka Theme Park Semarang, Jawa Tengah? Cek Rute dari Pusat Kota Solo&quot; | Kabupaten Semarang/Jawa Tengah/Jawa
+- ID: 1216279 | Title: &quot;Lapangan Terdampak Proyek KDMP, Warga Secang Tagih Janji Pemdes Bangun Kembali&quot; | Magelang/Jawa Tengah/Jawa
+- ID: 1798243 | Title: &quot;Indonesia vs Mozambik Malam Ini, Kevin Diks dan Dony Tri Pamungkas Diandalkan&quot; | Jakarta Pusat/DKI Jakarta/Jawa
+- ID: 942089 | Title: &quot;Kepala BGN Nanik Pastikan Anggaran MBG Tak Bisa Diputuskan Sepihak, Harus Seizin Wakil Kepala&quot; | None/None/None
+
+Top News Articles:
+- ID: 1175190 | Title: &quot;Sinyal Eksodus Pemain Persib Bandung Menguat, Umuh Muchtar Sebut Skenario Kini Bisa 50-50&quot; | Bandung/Jawa Barat/Jawa
+- ID: 1686529 | Title: &quot;Tiket Pesawat dari Bangka Belitung Tembus Rp1 Juta, Warga Mulai Beralih ke Jalur Laut&quot; | Pangkalpinang/Kepulauan Bangka Belitung/Sumatra
+- ID: 1941446 | Title: &quot;Shin Tae-yong Bawa Gerbong Timnas ke Persija, Ini Daftar Nama yang Dibawa, Persebaya Kena Efek&quot; | Jakarta Utara/DKI Jakarta/Jawa
+- ID: 315743 | Title: &quot;Pengakuan Mantan Baby Sitter soal Sifat Asli Sarwendah, Bandingkan dengan Ruben Onsu: Beda di Kamera&quot; | Jakarta Selatan/DKI Jakarta/Jawa
+- ID: 1798155 | Title: &quot;Pasutri di Deli Serdang Tewas setelah Motor Ditabrak Angkot, Tinggalkan 2 Anak yang Masih Kecil&quot; | Deli Serdang/Sumatera Utara/Sumatra
+- ID: 1798233 | Title: &quot;Rumah Disegel Bupatinya Ditangkap, KPK Ungkap Duduk Perkara OTT Suap terkait Proyek Sekolah&quot; | Muara Enim/Sumatera Selatan/Sumatra
+- ID: 7839347 | Title: &quot;Baru Dimutasi Oleh Kapolri, Irjen Pol Pipit Rismanto Diduga Terseret Kasus Aseng Bos Tambang Kalbar&quot; | None/Kalimantan Barat/Kalimantan
+- ID: 1106898 | Title: &quot;Ambulans Bawa Pasien Jantung Terbalik di Tol Pekanbaru-Dumai Usai Tabrak Truk, 3 Orang Tewas&quot; | Siak/Riau/Sumatra
+- ID: 1364294 | Title: &quot;BREAKING NEWS- Kejati Kalsel Geledah Kantor Dinas ESDM Kalsel di Banjarbaru, Didampingi Anggota TNI&quot; | Banjarbaru/Kalimantan Selatan/Kalimantan
+- ID: 1028962 | Title: &quot;7 Dapur SPPG di Banda Aceh Hentikan Operasional, Penyaluran MBG ke Sejumlah Sekolah Terhenti&quot; | Banda Aceh/Aceh/Sumatra
+- ID: 1798228 | Title: &quot;Awal Munculnya Nama Raffi Ahmad dalam Kasus Suap Pejabat Bea Cukai, Respons KPK: Betul Itu Fakta&quot; | Jakarta Pusat/DKI Jakarta/Jawa
+- ID: 38195 | Title: &quot;Viral Anak Kandung di Pasuruan &#x27;Buang&#x27; Ayahnya ke Griya Lansia Malang, Tak Dikabari Jika Meninggal&quot; | Pasuruan/Jawa Timur/Jawa
+</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Global</td>
+                    <td>Homepage Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No blacklisted keywords found in titles</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Global</td>
+                    <td>Homepage Rules Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No duplicate articles found</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Global</td>
+                    <td>Similarity Validation (RapidFuzz)</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell">
+                <div style="background-color: #f8f9fa; padding: 10px; border-left: 4px solid #007bff; border-radius: 4px; margin-bottom: 10px; color: #333; font-size: 13px;">
+                    <b>📊 MMR Observability Metrics</b><br>
+                    Average Ratio: <b>40.27</b> | 
+                    Max Ratio: <b>47.31</b> | 
+                    Threshold: <b>60.0</b> |
+                    Anomaly Gap: <b>25.0</b><br>
+                    Total Evaluated: 190 pairs | 
+                    Warnings: <span style="color: green;"><b>0</b></span> |
+                    Violations (Fails): <span style="color: green;"><b>0</b></span>
+                </div>
+                </td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Global</td>
+                    <td>Duplicate Image URL Position Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No adjacent duplicate images found.</pre></details></td>
+                </tr>
+            
+                <tr style="background-color: #ffffff;">
+                    <td>5</td>
+                    <td>Homepage Default</td>
+                    <td>test-1235</td>
+                    <td>0</td>
+                    <td>/homepage</td>
+                    <td>Global</td>
+                    <td>IP Undetected Duplicate Title Validation</td>
+                    <td class="PASS">PASS</td>
+                    <td class="detail-cell"><details><summary style="cursor: pointer; font-weight: bold; color: #007bff;">View / Hide Details</summary><pre style="white-space: pre-wrap; font-size: 12px; margin-top: 8px; max-height: 400px; overflow-y: auto; background: #282c34; color: #abb2bf; padding: 10px; border-radius: 5px;">No identical titles found for undetected IP.</pre></details></td>
+                </tr>
+            
+            </table>
+        </body>
+        </html>
+        
