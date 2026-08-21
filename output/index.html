@@ -1,1239 +1,297 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QA Automation Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent-color: #3b82f6;
-            --accent-hover: #60a5fa;
-            --glass-border: rgba(255, 255, 255, 0.08);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            min-height: 100vh;
-            background-image:
-                radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
-                radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 0.5) 0, transparent 50%),
-                radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.3) 0, transparent 50%);
-            background-attachment: fixed;
-            padding: 60px 20px;
-        }
-
-        .container { max-width: 1100px; margin: 0 auto; }
-
-        header { text-align: center; margin-bottom: 60px; animation: fadeInDown 0.8s ease-out; }
-
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-            letter-spacing: -1.5px;
-        }
-
-        p.subtitle {
-            font-size: 1.2rem; color: var(--text-secondary); font-weight: 300;
-            max-width: 600px; margin: 0 auto; line-height: 1.6;
-        }
-
-        .category-section { margin-bottom: 50px; }
-        .category-title { 
-            font-size: 2rem; font-weight: 600; margin-bottom: 25px; 
-            color: #f8fafc; border-bottom: 2px solid var(--glass-border); 
-            padding-bottom: 10px; animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        .report-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px; animation: fadeInUp 0.8s ease-out forwards; opacity: 0; animation-delay: 0.2s;
-        }
-
-        .report-card {
-            background: var(--card-bg); backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border); border-radius: 20px; padding: 30px;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative; overflow: hidden; display: flex; flex-direction: column;
-            justify-content: space-between; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-        }
-
-        .report-card::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.03), transparent);
-            transform: skewX(-20deg); transition: all 0.6s ease;
-        }
-
-        .report-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.15); }
-        .report-card:hover::before { left: 150%; }
-
-        .report-icon {
-            font-size: 2.5rem; margin-bottom: 20px;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;
-        }
-
-        .report-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 12px; color: #ffffff; }
-
-        .report-date { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 30px; display: flex; align-items: center; gap: 8px; }
-
-        .view-btn {
-            display: inline-flex; align-items: center; justify-content: center;
-            background: rgba(59, 130, 246, 0.1); color: #60a5fa; text-decoration: none;
-            padding: 12px 20px; border-radius: 12px; font-weight: 600; font-size: 0.95rem;
-            transition: all 0.3s ease; border: 1px solid rgba(59, 130, 246, 0.2);
-        }
-
-        .view-btn:hover { background: var(--accent-color); color: white; box-shadow: 0 0 20px rgba(59,130,246,0.4); }
-
-        .badge {
-            position: absolute; top: 20px; right: 20px; background: rgba(148,163,184,0.1);
-            color: var(--text-secondary); padding: 6px 12px; border-radius: 20px;
-            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.5px; border: 1px solid var(--glass-border);
-        }
-
-        .badge.latest {
-            background: rgba(16,185,129,0.1); color: #10b981; border-color: rgba(16,185,129,0.2);
-            box-shadow: 0 0 10px rgba(16,185,129,0.2); animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
-            70% { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
-            100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
-        }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
-</head>
+<html>
+<head><title>QA Reports</title></head>
 <body>
-    <div class="container">
-        <header>
-            <h1>QA Automation Dashboard</h1>
-            <p class="subtitle">Validation Reports for Tribun Data Product</p>
-        </header>
+    <h1>Automation Reports</h1>
+    <div class="report-grid">
 
-        <div class="category-section">
-            <h2 class="category-title">Trending Tag</h2>
-            <div class="report-grid">
-                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge latest">LATEST RUN</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 14:25:18
-                        </div>
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge latest">LATEST RUN</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Trending Tag Validation</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        August 21, 2026 &bull; 13:45:01
                     </div>
-                    <a href="html_trending_tag/report_20260821_142518.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 14:25:11
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_142511.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 14:25:05
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_142505.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 14:24:58
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_142458.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 14:24:52
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_142452.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 14:24:46
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_142446.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 14:24:39
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_142439.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 14:24:31
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_142431.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 14:24:25
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_142425.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 14:24:18
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_142418.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 13:45:01
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_134501.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 13:44:56
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_134456.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 13:44:50
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_134450.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 13:44:45
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_134445.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 13:44:38
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_134438.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 13:44:31
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_134431.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 13:44:25
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_134425.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 13:44:19
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_134419.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 13:44:12
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_134412.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 13:44:05
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_134405.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 13:42:30
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_134230.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 12:31:36
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_123136.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 12:27:06
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_122706.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 11:37:54
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_113754.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 11:35:17
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_113517.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Trending Tag Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 11:27:48
-                        </div>
-                    </div>
-                    <a href="html_trending_tag/report_20260821_112748.html" class="view-btn">View Detailed Report</a>
                 </div>
+                <a href="html_trending_tag/report_20260821_134501.html" class="view-btn">View Detailed Report</a>
             </div>
-        </div>
-\n
-        <div class="category-section">
-            <h2 class="category-title">Article based on location</h2>
-            <div class="report-grid">
-                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge latest">LATEST RUN</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Latest Feed Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 14:43:25
-                        </div>
-                    </div>
-                    <a href="html_latestfeed/validation_report_latest_feed_21-08-2026_14-43-25.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Latest Feed Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 11:12:02
-                        </div>
-                    </div>
-                    <a href="html_latestfeed/validation_report_latest_feed_21-08-2026_11-12-02.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Latest Feed Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 10:46:15
-                        </div>
-                    </div>
-                    <a href="html_latestfeed/validation_report_latest_feed_21-08-2026_10-46-15.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Latest Feed Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 10:26:37
-                        </div>
-                    </div>
-                    <a href="html_latestfeed/validation_report_latest_feed_21-08-2026_10-26-37.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Latest Feed Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 10:19:49
-                        </div>
-                    </div>
-                    <a href="html_latestfeed/validation_report_latest_feed_21-08-2026_10-19-49.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Latest Feed Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 10:04:28
-                        </div>
-                    </div>
-                    <a href="html_latestfeed/validation_report_latest_feed_21-08-2026_10-04-28.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Latest Feed Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 20, 2026 &bull; 14:35:32
-                        </div>
-                    </div>
-                    <a href="html_latestfeed/validation_report_latest_feed_20-08-2026_14-35-32.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Latest Feed Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 20, 2026 &bull; 08:50:58
-                        </div>
-                    </div>
-                    <a href="html_latestfeed/validation_report_latest_feed_20-08-2026_08-50-58.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Latest Feed Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 19, 2026 &bull; 16:15:30
-                        </div>
-                    </div>
-                    <a href="html_latestfeed/validation_report_latest_feed_19-08-2026_16-15-30.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Latest Feed Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 19, 2026 &bull; 16:10:56
-                        </div>
-                    </div>
-                    <a href="html_latestfeed/validation_report_latest_feed_19-08-2026_16-10-56.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Latest Feed Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 19, 2026 &bull; 13:48:41
-                        </div>
-                    </div>
-                    <a href="html_latestfeed/validation_report_latest_feed_19-08-2026_13-48-41.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Latest Feed Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 19, 2026 &bull; 13:48:18
-                        </div>
-                    </div>
-                    <a href="html_latestfeed/validation_report_latest_feed_19-08-2026_13-48-18.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Latest Feed Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 14, 2026 &bull; 14:01:50
-                        </div>
-                    </div>
-                    <a href="html_latestfeed/validation_report_latest_feed_14-08-2026_14-01-50.html" class="view-btn">View Detailed Report</a>
-                </div>
-            </div>
-        </div>
-\n
-        <div class="category-section">
-            <h2 class="category-title">Cross deduplication</h2>
-            <div class="report-grid">
-                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge latest">LATEST RUN</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 10:02:15
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_10-02-15.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 10:02:11
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_10-02-11.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 10:02:06
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_10-02-06.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 10:02:02
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_10-02-02.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 10:01:57
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_10-01-57.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 10:01:53
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_10-01-53.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 10:01:49
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_10-01-49.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 10:01:45
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_10-01-45.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 10:01:39
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_10-01-39.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 10:01:35
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_10-01-35.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 09:59:16
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_09-59-16.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 09:59:12
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_09-59-12.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 09:59:07
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_09-59-07.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 09:59:03
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_09-59-03.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 09:58:57
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_09-58-57.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 09:58:52
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_09-58-52.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 09:58:47
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_09-58-47.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 09:58:42
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_09-58-42.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 09:58:37
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_09-58-37.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 09:58:32
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_09-58-32.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 09:56:47
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_09-56-47.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 09:56:35
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_09-56-35.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 09:40:55
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_09-40-55.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 09:39:43
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_09-39-43.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 21, 2026 &bull; 09:39:26
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_21-08-2026_09-39-26.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 20, 2026 &bull; 14:32:28
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_20-08-2026_14-32-28.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 20, 2026 &bull; 14:31:56
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_20-08-2026_14-31-56.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 20, 2026 &bull; 14:30:11
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_20-08-2026_14-30-11.html" class="view-btn">View Detailed Report</a>
-                </div>\n                <!-- Report Card -->
-                <div class="report-card">
-                    <div class="badge">COMPLETED</div>
-                    <div>
-                        <div class="report-icon">📑</div>
-                        <h3 class="report-title">Cross Dedup Validation</h3>
-                        <div class="report-date">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            August 20, 2026 &bull; 14:28:29
-                        </div>
-                    </div>
-                    <a href="html_cross_dedup/cross_dedup_20-08-2026_14-28-29.html" class="view-btn">View Detailed Report</a>
-                </div>
-            </div>
-        </div>
 
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Trending Tag Validation</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        August 21, 2026 &bull; 13:44:56
+                    </div>
+                </div>
+                <a href="html_trending_tag/report_20260821_134456.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Trending Tag Validation</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        August 21, 2026 &bull; 13:44:50
+                    </div>
+                </div>
+                <a href="html_trending_tag/report_20260821_134450.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Trending Tag Validation</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        August 21, 2026 &bull; 13:44:45
+                    </div>
+                </div>
+                <a href="html_trending_tag/report_20260821_134445.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Trending Tag Validation</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        August 21, 2026 &bull; 13:44:38
+                    </div>
+                </div>
+                <a href="html_trending_tag/report_20260821_134438.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Trending Tag Validation</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        August 21, 2026 &bull; 13:44:31
+                    </div>
+                </div>
+                <a href="html_trending_tag/report_20260821_134431.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Trending Tag Validation</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        August 21, 2026 &bull; 13:44:25
+                    </div>
+                </div>
+                <a href="html_trending_tag/report_20260821_134425.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Trending Tag Validation</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        August 21, 2026 &bull; 13:44:19
+                    </div>
+                </div>
+                <a href="html_trending_tag/report_20260821_134419.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Trending Tag Validation</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        August 21, 2026 &bull; 13:44:12
+                    </div>
+                </div>
+                <a href="html_trending_tag/report_20260821_134412.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Trending Tag Validation</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        August 21, 2026 &bull; 13:44:05
+                    </div>
+                </div>
+                <a href="html_trending_tag/report_20260821_134405.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Trending Tag Validation</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        August 21, 2026 &bull; 13:42:30
+                    </div>
+                </div>
+                <a href="html_trending_tag/report_20260821_134230.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Trending Tag Validation</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        August 21, 2026 &bull; 12:31:36
+                    </div>
+                </div>
+                <a href="html_trending_tag/report_20260821_123136.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Trending Tag Validation</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        August 21, 2026 &bull; 12:27:06
+                    </div>
+                </div>
+                <a href="html_trending_tag/report_20260821_122706.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Trending Tag Validation</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        August 21, 2026 &bull; 11:37:54
+                    </div>
+                </div>
+                <a href="html_trending_tag/report_20260821_113754.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Trending Tag Validation</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        August 21, 2026 &bull; 11:35:17
+                    </div>
+                </div>
+                <a href="html_trending_tag/report_20260821_113517.html" class="view-btn">View Detailed Report</a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="report-card">
+                <div class="badge">COMPLETED</div>
+                <div>
+                    <div class="report-icon">📑</div>
+                    <h2 class="report-title">Trending Tag Validation</h2>
+                    <div class="report-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        August 21, 2026 &bull; 11:27:48
+                    </div>
+                </div>
+                <a href="html_trending_tag/report_20260821_112748.html" class="view-btn">View Detailed Report</a>
+            </div>
     </div>
 </body>
 </html>
