@@ -13,11 +13,125 @@ if not os.path.exists(index_path):
     os.makedirs(directory, exist_ok=True)
     with open(index_path, 'w', encoding='utf-8') as f:
         f.write('''<!DOCTYPE html>
-<html>
-<head><title>QA Reports</title></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Automation Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #3b82f6;
+            --accent-hover: #60a5fa;
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            background-image:
+                radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+                radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 0.5) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.3) 0, transparent 50%);
+            background-attachment: fixed;
+            padding: 60px 20px;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        header { text-align: center; margin-bottom: 60px; animation: fadeInDown 0.8s ease-out; }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            letter-spacing: -1.5px;
+        }
+
+        p.subtitle {
+            font-size: 1.2rem; color: var(--text-secondary); font-weight: 300;
+            max-width: 600px; margin: 0 auto; line-height: 1.6;
+        }
+
+        .report-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px; animation: fadeInUp 0.8s ease-out forwards; opacity: 0; animation-delay: 0.2s;
+        }
+
+        .report-card {
+            background: var(--card-bg); backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border); border-radius: 20px; padding: 30px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative; overflow: hidden; display: flex; flex-direction: column;
+            justify-content: space-between; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .report-card::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.03), transparent);
+            transform: skewX(-20deg); transition: all 0.6s ease;
+        }
+
+        .report-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.15); }
+        .report-card:hover::before { left: 150%; }
+
+        .report-icon {
+            font-size: 2.5rem; margin-bottom: 20px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;
+        }
+
+        .report-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 12px; color: #ffffff; }
+
+        .report-date { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 30px; display: flex; align-items: center; gap: 8px; }
+
+        .view-btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            background: rgba(59, 130, 246, 0.1); color: #60a5fa; text-decoration: none;
+            padding: 12px 20px; border-radius: 12px; font-weight: 600; font-size: 0.95rem;
+            transition: all 0.3s ease; border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .view-btn:hover { background: var(--accent-color); color: white; box-shadow: 0 0 20px rgba(59,130,246,0.4); }
+
+        .badge {
+            position: absolute; top: 20px; right: 20px; background: rgba(148,163,184,0.1);
+            color: var(--text-secondary); padding: 6px 12px; border-radius: 20px;
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.5px; border: 1px solid var(--glass-border);
+        }
+
+        .badge.latest {
+            background: rgba(16,185,129,0.1); color: #10b981; border-color: rgba(16,185,129,0.2);
+            box-shadow: 0 0 10px rgba(16,185,129,0.2); animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
+            70% { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+            100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+        }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
 <body>
-    <h1>Automation Reports</h1>
-    <div class="report-grid">
+    <div class="container">
+        <header>
+            <h1>QA Automation Dashboard</h1>
+            <p class="subtitle">Validation Reports for Tribun Data Product</p>
+        </header>
+        <div class="report-grid">
+    </div>
     </div>
 </body>
 </html>''')
@@ -36,7 +150,7 @@ if start_marker not in content:
 
 parts = content.split(start_marker)
 header = parts[0] + start_marker + "\n\n"
-footer = "\n    </div>\n</body>\n</html>"
+footer = "\n        </div>\n    </div>\n</body>\n</html>"
 
 html_files = []
 
