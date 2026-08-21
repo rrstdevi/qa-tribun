@@ -66,3 +66,17 @@ The fallback is completely transparent, but you can identify a fallback payload 
 - **Normal state:** `"type": "latest_news"` or `"type": "popular"`
 - **Fallback state:** `"type": "default-value"`
 ---
+
+**Notes For QA Test**
+
+**1. Jika ingin menjalankan HANYA 1 KALI (Single Run):**
+```bash
+PYTHONPATH=. uv run python homepage/test_cross_feed_dedup.py
+```
+
+**2. Jika ingin menjalankan 10 KALI berturut-turut otomatis (Stress Test/Looping):**
+```bash
+for i in {1..10}; do echo "=== ITERASI $i ==="; PYTHONPATH=. uv run python homepage/test_cross_feed_dedup.py; sleep 1; done
+```
+
+Kapan pun butuh pengecekan, gunakan *command* di atas. Semua hasil *report*-nya akan otomatis bertambah dan masuk ke dalam folder `output/csv_cross_dedup` dan `output/html_cross_dedup` tanpa menimpa file yang lama (karena namanya sudah menggunakan *timestamp*).

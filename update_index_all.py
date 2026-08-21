@@ -49,6 +49,7 @@ header = '''<!DOCTYPE html>
             font-weight: 700;
             background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 15px;
             letter-spacing: -1.5px;
@@ -84,7 +85,7 @@ header = '''<!DOCTYPE html>
         .report-icon {
             font-size: 2.5rem; margin-bottom: 20px;
             background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;
         }
 
         .report-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 12px; color: #ffffff; }
