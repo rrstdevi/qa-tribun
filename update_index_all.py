@@ -49,6 +49,7 @@ header = '''<!DOCTYPE html>
             font-weight: 700;
             background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 15px;
             letter-spacing: -1.5px;
@@ -57,6 +58,13 @@ header = '''<!DOCTYPE html>
         p.subtitle {
             font-size: 1.2rem; color: var(--text-secondary); font-weight: 300;
             max-width: 600px; margin: 0 auto; line-height: 1.6;
+        }
+
+        .category-section { margin-bottom: 50px; }
+        .category-title { 
+            font-size: 2rem; font-weight: 600; margin-bottom: 25px; 
+            color: #f8fafc; border-bottom: 2px solid var(--glass-border); 
+            padding-bottom: 10px; animation: fadeInUp 0.8s ease-out forwards;
         }
 
         .report-grid {
@@ -84,7 +92,7 @@ header = '''<!DOCTYPE html>
         .report-icon {
             font-size: 2.5rem; margin-bottom: 20px;
             background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;
         }
 
         .report-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 12px; color: #ffffff; }
@@ -125,89 +133,111 @@ header = '''<!DOCTYPE html>
         <header>
             <h1>QA Automation Dashboard</h1>
             <p class="subtitle">Validation Reports for Tribun Data Product</p>
-        </header>
-        <div class="report-grid">\n'''
+        </header>\n'''
 
-footer = "\n        </div>\n    </div>\n</body>\n</html>"
+footer = "\n    </div>\n</body>\n</html>"
 
 html_files = []
+target_dirs = ["html_trending_tag", "html_latestfeed", "html_cross_dedup"]
 
-# Scan root output directory and reports_* subdirectories
-for f in os.listdir(directory):
-    path = os.path.join(directory, f)
-    if os.path.isfile(path) and f.endswith('.html') and f != 'index.html':
-        html_files.append(f)
-    elif os.path.isdir(path) and (f.startswith("reports_") or f.startswith("html_")):
+for target_dir in target_dirs:
+    path = os.path.join(directory, target_dir)
+    if os.path.isdir(path):
         for sub_f in os.listdir(path):
             if sub_f.endswith('.html'):
-                html_files.append(f"{f}/{sub_f}")
+                html_files.append(f"{target_dir}/{sub_f}")
 
 reports = []
 for file_path in html_files:
     file_name = os.path.basename(file_path)
-    # Extract date and time
-    # validation_report_20260617_154551.html
-    # report_2026-06-17_15-14-01_batch_1.html
-    
-    # Trending Tag: report_20260821_113754.html
-    
-    match1 = re.search(r'validation_report_(\d{8})_(\d{6})\.html', file_name)
-    match2 = re.search(r'report_(\d{4}-\d{2}-\d{2})_(\d{2}-\d{2}-\d{2})_batch_(\d+)\.html', file_name)
-    match3 = re.search(r'report_(\d{8})_(\d{6})\.html', file_name)
+    match_trending = re.search(r'report_(\d{8})_(\d{6})\.html', file_name)
+    match_latest = re.search(r'validation_report_latest_feed_(\d{2}-\d{2}-\d{4})_(\d{2}-\d{2}-\d{2})\.html', file_name)
+    match_dedup = re.search(r'cross_dedup_(\d{2}-\d{2}-\d{4})_(\d{2}-\d{2}-\d{2})\.html', file_name)
     
     dt = None
     title = "Validation Report"
     
-    if match1:
-        date_str, time_str = match1.groups()
-        dt = datetime.strptime(f"{date_str}{time_str}", "%Y%m%d%H%M%S")
-    elif match2:
-        date_str, time_str, batch_num = match2.groups()
-        dt = datetime.strptime(f"{date_str}{time_str}", "%Y-%m-%d%H-%M-%S")
-        title = f"Validation Report (Batch {batch_num})"
-    elif match3:
-        date_str, time_str = match3.groups()
+    if match_trending:
+        date_str, time_str = match_trending.groups()
         dt = datetime.strptime(f"{date_str}{time_str}", "%Y%m%d%H%M%S")
         title = "Trending Tag Validation"
+        category = "Trending Tag"
+    elif match_latest:
+        date_str, time_str = match_latest.groups()
+        dt = datetime.strptime(f"{date_str}{time_str}", "%d-%m-%Y%H-%M-%S")
+        title = "Latest Feed Validation"
+        category = "Article based on location"
+    elif match_dedup:
+        date_str, time_str = match_dedup.groups()
+        dt = datetime.strptime(f"{date_str}{time_str}", "%d-%m-%Y%H-%M-%S")
+        title = "Cross Dedup Validation"
+        category = "Cross deduplication"
     else:
         continue
         
     reports.append({
         'file': file_path,
         'dt': dt,
-        'title': title
+        'title': title,
+        'category': category
     })
 
 reports.sort(key=lambda x: x['dt'], reverse=True)
 
-# Generate HTML for all reports found
-cards_html = []
-for i, r in enumerate(reports):
-    badge_class = "badge latest" if i == 0 else "badge"
-    badge_text = "LATEST RUN" if i == 0 else "COMPLETED"
-    
-    date_formatted = r['dt'].strftime("%B %d, %Y &bull; %H:%M:%S")
-    
-    card = f'''            <!-- Report Card -->
-            <div class="report-card">
-                <div class="{badge_class}">{badge_text}</div>
-                <div>
-                    <div class="report-icon">📑</div>
-                    <h2 class="report-title">{r['title']}</h2>
-                    <div class="report-date">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg>
-                        {date_formatted}
-                    </div>
-                </div>
-                <a href="{r['file']}" class="view-btn">View Detailed Report</a>
-            </div>'''
-    cards_html.append(card)
+# Group reports
+categories = ["Trending Tag", "Article based on location", "Cross deduplication"]
+grouped_reports = {c: [] for c in categories}
 
-new_content = header + "\n\n".join(cards_html) + footer
+for r in reports:
+    if r['category'] in grouped_reports:
+        grouped_reports[r['category']].append(r)
+
+# Generate HTML for all reports found
+sections_html = []
+for category in categories:
+    cat_reports = grouped_reports[category]
+    if not cat_reports:
+        continue
+        
+    section_html = f'''
+        <div class="category-section">
+            <h2 class="category-title">{category}</h2>
+            <div class="report-grid">
+'''
+    cards_html = []
+    for i, r in enumerate(cat_reports):
+        badge_class = "badge latest" if i == 0 else "badge"
+        badge_text = "LATEST RUN" if i == 0 else "COMPLETED"
+        
+        date_formatted = r['dt'].strftime("%B %d, %Y &bull; %H:%M:%S")
+        
+        card = f'''                <!-- Report Card -->
+                <div class="report-card">
+                    <div class="{badge_class}">{badge_text}</div>
+                    <div>
+                        <div class="report-icon">📑</div>
+                        <h3 class="report-title">{r['title']}</h3>
+                        <div class="report-date">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            {date_formatted}
+                        </div>
+                    </div>
+                    <a href="{r['file']}" class="view-btn">View Detailed Report</a>
+                </div>'''
+        cards_html.append(card)
+        
+    section_html += "\\n".join(cards_html)
+    section_html += '''
+            </div>
+        </div>
+'''
+    sections_html.append(section_html)
+
+new_content = header + "\\n".join(sections_html) + footer
 
 with open(index_path, 'w', encoding='utf-8') as f:
     f.write(new_content)
