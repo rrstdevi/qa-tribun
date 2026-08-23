@@ -36,3 +36,4 @@ venv/
 scratch/
 .agents/
 .gemini/
+.DS_Store
